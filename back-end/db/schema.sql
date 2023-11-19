@@ -10,8 +10,15 @@ CREATE TABLE users (
     first_name VARCHAR(50),
     last_name VARCHAR(50), 
     email VARCHAR(255),
-    product_id INTEGER REFERENCES products (id)
+    product_id INTEGER REFERENCES products(product_id)
     ON DELETE CASCADE
+);
+
+CREATE TABLE orders (
+    order_id SERIAL PRIMARY KEY, 
+    user_id INTEGER REFERENCES users(user_id),
+    order_date DATE, 
+    total_price NUMERIC(10, 2)
 );
 
 
@@ -21,13 +28,13 @@ CREATE TABLE categories (
 );
 
 CREATE TABLE products (
-    id SERIAL PRIMARY KEY, 
+    product_id SERIAL PRIMARY KEY, 
     name TEXT NOT NULL, 
     description TEXT, 
     price NUMERIC, 
     quantity_in_stock BOOLEAN, 
-    category_id INTEGER REFERENCES categories (id)
+    category_id INTEGER REFERENCES categories(category_id)
     ON DELETE CASCADE,
-    user_id INTEGER REFERENCES users (id)
+    user_id INTEGER REFERENCES users(user_id)
     ON DELETE CASCADE
 );
