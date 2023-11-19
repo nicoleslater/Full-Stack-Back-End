@@ -16,10 +16,20 @@ CREATE TABLE users (
 
 CREATE TABLE orders (
     order_id SERIAL PRIMARY KEY, 
-    user_id INTEGER REFERENCES users(user_id),
+    user_id INTEGER REFERENCES users(user_id)
+    ON DELETE CASCADE,
     order_date DATE, 
     total_price NUMERIC(10, 2)
 );
+
+CREATE TABLE order_items (
+    order_item_id SERIAL PRIMARY KEY, 
+    order_id INTEGER REFERENCES orders(order_id)
+    ON DELETE CASCADE,
+    product_id INTEGER REFERENCES products(product_id)
+    ON DELETE CASCADE,
+    quantity INTEGER
+)
 
 
 CREATE TABLE categories (
@@ -36,5 +46,5 @@ CREATE TABLE products (
     category_id INTEGER REFERENCES categories(category_id)
     ON DELETE CASCADE,
     user_id INTEGER REFERENCES users(user_id)
-    ON DELETE CASCADE
+    ON DELETE CASCADE, 
 );
