@@ -38,12 +38,4 @@ CREATE TABLE orders (
     total_price NUMERIC(10, 2)
 );
 
-CREATE TABLE order_items (
-    order_item_id SERIAL PRIMARY KEY, 
-    order_id INTEGER REFERENCES orders(order_id)
-    ON DELETE CASCADE,
-    product_id INTEGER REFERENCES products(product_id)
-    ON DELETE CASCADE,
-    quantity INTEGER
-);
 
