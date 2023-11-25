@@ -19,6 +19,8 @@ CREATE TABLE users (
     first_name VARCHAR(50),
     last_name VARCHAR(50), 
     email VARCHAR(255),
+    shipping_address TEXT,
+    preferred_delivery BOOLEAN,
     product_id INTEGER REFERENCES products(product_id)
     ON DELETE CASCADE
 );
@@ -28,7 +30,9 @@ CREATE TABLE orders (
     user_id INTEGER REFERENCES users(user_id)
     ON DELETE CASCADE,
     order_date DATE, 
-    total_price NUMERIC(10, 2)
+    total_price NUMERIC(10, 2), 
+    delivery BOOLEAN, 
+    pick_up BOOLEAN
 );
 
 
