@@ -1,10 +1,10 @@
 \c lovelysoaps;
 
-INSERT INTO products (name, description, price, _in_stock, user_id)
+INSERT INTO products (name, description, price, _in_stock)
 VALUES 
-('Cocoa Butter Kisses', 'Perfect lotion for Winter Season and leaves the skin moisturized', 1899, true, 1),
-('Green Tea Face Scrub', 'Nourshing and exfoliating that is gentle enough for sensitive skin', 999, true, 2),
-('Almond Honey Soap', 'Conditions the skin with leaving the skin soft', 1599, false, 3);
+('Cocoa Butter Kisses', 'Perfect lotion for Winter Season and leaves the skin moisturized', 1899, true),
+('Green Tea Face Scrub', 'Nourshing and exfoliating that is gentle enough for sensitive skin', 999, true),
+('Almond Honey Soap', 'Conditions the skin with leaving the skin soft', 1599, false);
 
 INSERT INTO users (first_name, last_name, email, shipping_address, preferred_delivery)
 VALUES 
