@@ -1,9 +1,5 @@
 const express = require("express");
 
-
-
-// const { getOneOrder } = require("../queries/orders.js");
-
 const {
     getAllProducts, 
     getOneProduct, 
@@ -11,9 +7,6 @@ const {
     deleteProduct, 
     updateProduct,
 } = require("../queries/products.js");
-
-// const ordersController = require("./ordersController");
-// products.use("/:product_id/orders", ordersController);
 
 const { checkName, checkBoolean } = require("../validations/checkProducts.js");
 
