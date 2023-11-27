@@ -8,7 +8,7 @@ const {
     updateProduct
 } = require("../queries/products.js");
 
-const { checkName, checkBoolean } = require("../validations/checkMovies.js");
+const { checkName, checkBoolean } = require("../validations/checkProducts.js");
 
 const products = express.Router();
 
