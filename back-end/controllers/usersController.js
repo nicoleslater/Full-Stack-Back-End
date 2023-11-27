@@ -8,13 +8,13 @@ const {
     updateUser,
 } = require("../queries/users");
 
-const ordersController = require("../controllers/ordersController");
+// const ordersController = require("../controllers/ordersController");
 
 const { checkName, checkBoolean } = require("../validations/checkUsers");
 
 const users = express.Router();
 
-users.use("/:user_id/orders", ordersController);
+// users.use("/:user_id/orders", ordersController);
 
 users.get(":/id", async (req, res) => {
     const { id } = req.params;

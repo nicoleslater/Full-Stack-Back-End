@@ -14,7 +14,7 @@ const {
 
 const usersController = require("../controllers/usersController.js");
 
-// orders.use(":/order_id/users", usersController);
+orders.use(":/users/:/id", usersController);
 
 const { checkName, checkBoolean } = require("../validations/checkOrders.js");
 
@@ -23,7 +23,7 @@ const { checkName, checkBoolean } = require("../validations/checkOrders.js");
 // Products
 
 
-orders.get(":/order_id", async (req, res) => {
+orders.get(":/id", async (req, res) => {
     const { order_id, user_id } = req.params;
     try{
         const order = await getOneOrder(order_id);
@@ -57,9 +57,9 @@ orders.post("/", checkName, checkBoolean, async (req, res) => {
     }
 });
 
-orders.delete("/:order_id", async (req, res) => {
+orders.delete("/:id", async (req, res) => {
     try{
-        const { order_id } = req.params;
+        const { id } = req.params;
         const deletedOrder = await deleteOrder(order_id);
         if(deletedOrder){
             res.status(200).json({ 
