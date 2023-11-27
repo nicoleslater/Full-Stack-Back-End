@@ -9,7 +9,7 @@ const {
     getOneOrder, 
     createOrder, 
     deleteOrder, 
-    updateOrder
+    updateOrder,
 } = require("../queries/orders");
 
 const usersController = require("../controllers/usersController.js");

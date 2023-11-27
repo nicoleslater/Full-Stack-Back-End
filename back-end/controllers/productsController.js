@@ -9,7 +9,7 @@ const {
     getOneProduct, 
     createProduct, 
     deleteProduct, 
-    updateProduct
+    updateProduct,
 } = require("../queries/products.js");
 
 // const ordersController = require("./ordersController");

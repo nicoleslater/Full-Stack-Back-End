@@ -5,7 +5,7 @@ const {
     getOneUser,
     createUser, 
     deleteUser, 
-    updateUser
+    updateUser,
 } = require("../queries/users");
 
 const ordersController = require("../controllers/ordersController");
