@@ -1,6 +1,6 @@
 \c lovelysoaps;
 
-INSERT INTO products (name, description, price, _in_stock)
+INSERT INTO products (name, description, price, _in_stock, images, inventory_count, category)
 VALUES 
 ('Cocoa Butter Kisses', 'Perfect lotion for Winter Season and leaves the skin moisturized', 1899, true),
 ('Green Tea Face Scrub', 'Nourshing and exfoliating that is gentle enough for sensitive skin', 999, true),
