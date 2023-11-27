@@ -12,9 +12,9 @@ const {
     updateOrder,
 } = require("../queries/orders");
 
-const usersController = require("../controllers/usersController.js");
+// const usersController = require("../controllers/usersController.js");
 
-orders.use(":/users/:/id", usersController);
+// orders.use(":/users/:/id", usersController);
 
 const { checkName, checkBoolean } = require("../validations/checkOrders.js");
 
