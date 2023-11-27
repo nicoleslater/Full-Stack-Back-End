@@ -12,6 +12,11 @@ const {
     updateOrder
 } = require("../queries/orders");
 
+// Users
+// Orders
+// Products
+
+
 orders.get(":/order_id", async (req, res) => {
     const { order_id, user_id } = req.params;
     try{
