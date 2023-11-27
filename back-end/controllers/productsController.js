@@ -1,6 +1,7 @@
 const express = require("express");
 
 const products = express.Router({ mergeParams: true });
+
 const { getOneOrder } = require("../queries/orders.js");
 
 const {
@@ -10,6 +11,11 @@ const {
     deleteProduct, 
     updateProduct
 } = require("../queries/products.js");
+
+const ordersController = require("./ordersController");
+products.use("/:product_id/orders", ordersController);
+
+const { checkName, checkBoolean } = require("../validations/checkProducts.js");
 
 products.get(":/product_id", async (req, res) => {
     const { product_id, order_id } = req.params;
@@ -35,7 +41,7 @@ products.get("/", async (req, res) => {
         }
 });
 
-products.post("/", async (req, res) => {
+products.post("/", checkName, checkBoolean, async (req, res) => {
     try{
         const { order_id } = req.params;
         const createdProduct = await createProduct(order_id, req.body);

@@ -12,6 +12,10 @@ const {
     updateOrder
 } = require("../queries/orders");
 
+orders.use(":/order_id/users", usersController);
+
+const { checkName, checkBoolean } = require("../validations/checkOrders.js");
+
 // Users
 // Orders
 // Products
@@ -41,7 +45,7 @@ orders.get("/", async (req, res) => {
     }
 });
 
-orders.post("/", async (req, res) => {
+orders.post("/", checkName, checkBoolean, async (req, res) => {
     try{
         const { user_id } = req.params;
         const createdOrder = await createOrder(user_id, req.body)
