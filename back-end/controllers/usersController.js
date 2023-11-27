@@ -8,7 +8,7 @@ const {
     updateUser
 } = require("../queries/users");
 
-const ordersController = require("./ordersController");
+const ordersController = require("../controllers/ordersController");
 
 const { checkName, checkBoolean } = require("../validations/checkUsers");
 

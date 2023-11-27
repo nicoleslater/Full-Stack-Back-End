@@ -1,8 +1,8 @@
 const express = require("express");
 
-const products = express.Router({ mergeParams: true });
 
-const { getOneOrder } = require("../queries/orders.js");
+
+// const { getOneOrder } = require("../queries/orders.js");
 
 const {
     getAllProducts, 
@@ -12,52 +12,47 @@ const {
     updateProduct
 } = require("../queries/products.js");
 
-const ordersController = require("./ordersController");
-products.use("/:product_id/orders", ordersController);
+// const ordersController = require("./ordersController");
+// products.use("/:product_id/orders", ordersController);
 
 const { checkName, checkBoolean } = require("../validations/checkProducts.js");
 
-products.get(":/product_id", async (req, res) => {
-    const { product_id, order_id } = req.params;
-   try{
-    const product = await getOneProduct(product_id);
-    const order = await getOneOrder(order_id);
-    if(product.id){
-        res.json({ ...order, product });
+const products = express.Router();
+
+products.get(":/id", async (req, res) => {
+    const { id } = req.params;
+    const oneProduct = await getOneProduct(id)
+    if(oneProduct){
+        res.json(oneProduct)
+    } else{
+        res.status(404).json({ error: "Sorry that product does not exist!"});
     }
-   } catch(err){
-    res.json(err);
-   }
 });
 
 products.get("/", async (req, res) => {
-    const { product_id } = req.params;
-        try{
-            const order = await getOneOrder(order_id);
-            const allProducts = await getAllProducts(order_id);
-            res.json({ ...order, allProducts });
-        } catch(err){
-            res.json(err);
-        }
+  const allProducts = await getAllProducts();
+  if(allProducts[0]){
+    res.status(200)
+    .json({ success: true, data: { error: "There is an error please go back!" } });
+  }
 });
 
 products.post("/", checkName, checkBoolean, async (req, res) => {
     try{
-        const { order_id } = req.params;
         const createdProduct = await createProduct(order_id, req.body);
-        res.json(createdProduct);
+        res.json(createdProduct)
     } catch(error){
-        res.status(404).json({ error: "Please go Back there is a server error!"});
+        res.status(404).json({ error: "Please go Back there is a server error!" } );
     }
 });
 
-products.delete("/:product_id", async (req, res) => {
+products.delete("/:id", async (req, res) => {
     try{
-        const { product_id } = req.params;
-        const deletedProduct = await deleteProduct(product_id);
+        const { id } = req.params;
+        const deletedProduct = await deleteProduct(id);
         if(deletedProduct){
             res.status(200).json({ success: true, payload: { data: deletedProduct, }, });
-        } else {
+        } else{
             res.status(404).json("Sorry product not found!");
         }
     } catch(err){
@@ -66,8 +61,8 @@ products.delete("/:product_id", async (req, res) => {
 });
 
 products.put("/:id", async (req, res) => {
-    const { id, order_id } = req.params;
-    const updatedProduct = await updateProduct( {order_id, id, ...req.body} );
+    const { id } = req.params;
+    const updatedProduct = await updateProduct( {id, ...req.body} );
     if(updatedProduct.id){
         res.status(200).json(updatedProduct);
     } else{
