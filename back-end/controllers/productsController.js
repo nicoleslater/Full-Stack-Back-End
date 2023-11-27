@@ -35,22 +35,22 @@ products.get("/", async (req, res) => {
         }
 });
 
-products.post("/", checkName, checkBoolean, async (req, res) => {
+products.post("/", async (req, res) => {
     try{
         const { order_id } = req.params;
         const createdProduct = await createProduct(order_id, req.body);
         res.json(createdProduct);
     } catch(error){
-        res.status(400).json({ error: "Please go Back there is a server error!"});
+        res.status(404).json({ error: "Please go Back there is a server error!"});
     }
 });
 
 products.delete("/:product_id", async (req, res) => {
     try{
         const { product_id } = req.params;
-        const deletedProduct = await deleteProduct(id);
+        const deletedProduct = await deleteProduct(product_id);
         if(deletedProduct){
-            res.status(200).json({ success: true, payload: { data: deletedProduct, }})
+            res.status(200).json({ success: true, payload: { data: deletedProduct, }, });
         } else {
             res.status(404).json("Sorry product not found!");
         }

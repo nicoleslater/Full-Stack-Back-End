@@ -14,7 +14,7 @@ const { checkName, checkBoolean } = require("../validations/checkUsers");
 
 const users = express.Router();
 
-users.use("/:user_id/orders", ordersController)
+users.use("/:user_id/orders", ordersController);
 
 users.get(":/id", async (req, res) => {
     const { id } = req.params;
@@ -30,10 +30,10 @@ users.get("/", async (req, res) => {
     const allUsers = await getAllUsers();
     if(allUsers[0]){
         res.status(200)
-        .json( { success: true, data: { payload: allUsers, }});
-    } else {
-        res.status(500)
-        .json({ success: false, data: { error: "Error with the Server, please try again!"}});
+        .json({ success: true, data: { payload: allUsers } });
+    } else{
+        res.status(404)
+        .json({ success: false, data: { error: "Error with the Server, please try again!" } });
     }
 });
 
@@ -42,7 +42,7 @@ users.post("/", checkName, checkBoolean, async (req, res) => {
         const createdUser = await createUser(req.body);
         res.json(createdUser)
     } catch(error){
-        res.status(400).json({ error: "Please go Back there is a server error!"});
+        res.status(404).json({ error: "Please go Back there is a server error!"});
     }
 });
 
