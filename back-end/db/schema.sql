@@ -20,7 +20,6 @@ CREATE TABLE orders (
     delivery BOOLEAN, 
     pick_up BOOLEAN, 
     user_id INTEGER REFERENCES users(id)
-    ON DELETE CASCADE
 );
 
 CREATE TABLE products (
@@ -31,6 +30,4 @@ CREATE TABLE products (
     _in_stock BOOLEAN, 
     ingredients TEXT, 
     category TEXT, 
-    user_id INTEGER REFERENCES users(id)
-    ON DELETE CASCADE
 );
