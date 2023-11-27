@@ -29,5 +29,6 @@ CREATE TABLE products (
     price NUMERIC, 
     _in_stock BOOLEAN, 
     ingredients TEXT, 
+    inventory_count NUMERIC,
     category TEXT
 );
