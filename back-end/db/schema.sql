@@ -16,6 +16,8 @@ CREATE TABLE products (
     category TEXT
 );
 
+\c lovelyskin_dev;
+
 CREATE TABLE users (
     user_id SERIAL PRIMARY KEY, 
     first_name VARCHAR(50),
@@ -26,6 +28,8 @@ CREATE TABLE users (
     product_id INTEGER REFERENCES products(product_id)
     ON DELETE CASCADE
 );
+
+\c lovelyskin_dev;
 
 CREATE TABLE orders (
     order_id SERIAL PRIMARY KEY, 
