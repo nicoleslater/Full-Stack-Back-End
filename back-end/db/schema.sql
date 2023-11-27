@@ -5,18 +5,18 @@ CREATE DATABASE lovelyskincare_dev;
 \c lovelyskincare_dev;
 
 CREATE TABLE users (
-    user_id SERIAL PRIMARY KEY, 
-    first_name VARCHAR(50),
-    last_name VARCHAR(50), 
-    email VARCHAR(250),
+    id SERIAL PRIMARY KEY, 
+    first_name TEXT,
+    last_name TEXT, 
+    email TEXT,
     shipping_address TEXT, 
-    preferred_delivery BOOLEAN, 
+    preferred_delivery BOOLEAN 
 );
 
 CREATE TABLE orders ( 
     order_id SERIAL PRIMARY KEY, 
     order_date DATE, 
-    total_price NUMERIC(10, 2),
+    total_price NUMERIC,
     delivery BOOLEAN, 
     pick_up BOOLEAN, 
     user_id INTEGER REFERENCES users(id)
@@ -29,5 +29,5 @@ CREATE TABLE products (
     price NUMERIC, 
     _in_stock BOOLEAN, 
     ingredients TEXT, 
-    category TEXT, 
+    category TEXT
 );

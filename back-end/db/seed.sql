@@ -14,6 +14,6 @@ VALUES
 
 INSERT INTO orders (user_id, order_date, total_price, delivery, pick_up)
 VALUES 
-(1, '2023-01-05', 18.99, true, false),
-(2, '2023-03-11', 9.99, false, true),
-(3, '2023-02-14', 15.99, true, false);
+(1, '2023-01-05', 1899, true, false),
+(2, '2023-03-11', 999, false, true),
+(3, '2023-02-14', 1599, true, false);
