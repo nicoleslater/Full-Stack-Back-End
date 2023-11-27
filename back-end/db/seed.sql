@@ -6,11 +6,11 @@ VALUES
 ('Autumn', 'Stevens', 'stevenssavvy@gmail.com', '456 Oak Rd, Suburbatoon, OR, 97123', true),
 ('Caleb', 'Davis', 'davisC@gmail.com', '352 Finley Parkway Apt 5E, East Lydia, NY 12345', false);
 
-INSERT INTO orders (order_date, total_price, delivery, pick_up)
+INSERT INTO orders (order_date, total_price, delivery_date, pick_up)
 VALUES 
-('2023-01-05', 1899, true, false),
-('2023-03-11', 999, false, true),
-('2023-02-14', 1599, true, false);
+('2023-01-05', 1899, '2023-01-08', true, false),
+('2023-03-11', 999, '2023-03-15', true, false),
+('2023-02-14', 1599,'2023-02-18', true, false);
 
 INSERT INTO products (name, description, price, _in_stock, ingredients, inventory_count, category)
 VALUES 

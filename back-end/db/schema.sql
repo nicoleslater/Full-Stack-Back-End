@@ -17,7 +17,7 @@ CREATE TABLE orders (
     order_id SERIAL PRIMARY KEY, 
     order_date DATE, 
     total_price NUMERIC,
-    delivery BOOLEAN, 
+    delivery_date DATE, 
     pick_up BOOLEAN, 
     user_id INTEGER REFERENCES users(id)
 );

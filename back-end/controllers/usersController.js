@@ -8,3 +8,6 @@ const {
     updateUser
 } = require("../queries/users");
 
+const users = express.Router();
+
+const { checkName, checkBoolean } = require("../validations/check")
