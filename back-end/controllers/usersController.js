@@ -8,9 +8,13 @@ const {
     updateUser
 } = require("../queries/users");
 
-const users = express.Router();
+const ordersController = require("./ordersController");
 
 const { checkName, checkBoolean } = require("../validations/checkUsers");
+
+const users = express.Router();
+
+users.use("/:user_id/orders", ordersController)
 
 users.get(":/id", async (req, res) => {
     const { id } = req.params;
@@ -26,7 +30,7 @@ users.get("/", async (req, res) => {
     const allUsers = await getAllUsers();
     if(allUsers[0]){
         res.status(200)
-        .json( { success: true, data: { payload: allUsers }});
+        .json( { success: true, data: { payload: allUsers, }});
     } else {
         res.status(500)
         .json({ success: false, data: { error: "Error with the Server, please try again!"}});
@@ -47,7 +51,7 @@ users.delete("/:id", async (req, res) => {
         const { id } = req.params;
         const deletedUser = await deleteUser(id);
         if(deletedUser){
-            res.status(200).json({ success: true, payload: { data: deletedUser }})
+            res.status(200).json({ success: true, payload: { data: deletedUser, }})
         } else {
             res.status(404).json("Sorry that user is not found!");
         }
