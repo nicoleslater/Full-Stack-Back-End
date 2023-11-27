@@ -29,11 +29,11 @@ const createOrder = async (order) => {
     }
 }
 
-const deleteOrder = async (order_id) => {
+const deleteOrder = async (id) => {
     try{
         const deletedOrder = await db.one(
             "DELETE from orders WHERE id = $1 RETURNING *", 
-            order_id
+            id
         )
         return deletedOrder
     } catch(error){
@@ -41,12 +41,12 @@ const deleteOrder = async (order_id) => {
     }
 }
 
-const updateOrder = async (order_id, order) => {
+const updateOrder = async (id, order) => {
    try{
         const {order_date, total_price, delivery_date, pick_up} = order;
         const updatedOrder = await db.one(
             "UPDATE orders SET order_date=$1, total_price=$2, delivery_date=$3, pick_up=$4 WHERE id=$5 RETURNING *",
-            [order_date, total_price, delivery_date, pick_up, order_id]
+            [order_date, total_price, delivery_date, pick_up, id]
             );
             return updatedOrder
    } catch(err){
