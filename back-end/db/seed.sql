@@ -8,9 +8,9 @@ VALUES
 
 INSERT INTO orders (order_date, total_price, delivery_date, pick_up)
 VALUES 
-('2023-01-05', 1899, '2023-01-08', true, false),
-('2023-03-11', 999, '2023-03-15', true, false),
-('2023-02-14', 1599,'2023-02-18', true, false);
+('2023-01-05', 1899, '2023-01-08', false),
+('2023-03-11', 999, '2023-03-15', false),
+('2023-02-14', 1599,'2023-02-18', true);
 
 INSERT INTO products (name, description, price, _in_stock, ingredients, inventory_count, category)
 VALUES 
