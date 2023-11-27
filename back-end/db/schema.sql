@@ -1,8 +1,8 @@
-DROP DATABASE IF EXISTS lovelysoaps_dev;
+DROP DATABASE IF EXISTS lovelyskin_dev;
 
-CREATE DATABASE lovelysoaps_dev;
+CREATE DATABASE lovelyskin_dev;
 
-\c lovelysoaps_dev;
+\c lovelyskin_dev;
 
 CREATE TABLE products (
     product_id SERIAL PRIMARY KEY, 
@@ -10,8 +10,10 @@ CREATE TABLE products (
     description TEXT, 
     price NUMERIC, 
     _in_stock BOOLEAN, 
+    ingredients TEXT,
     user_id INTEGER REFERENCES users(user_id)
     ON DELETE CASCADE, 
+    category TEXT
 );
 
 CREATE TABLE users (
