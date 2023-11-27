@@ -25,19 +25,19 @@ CREATE TABLE products (
     price NUMERIC, 
     _in_stock BOOLEAN, 
     ingredients TEXT,
+    category TEXT,
     user_id INTEGER REFERENCES users(user_id)
-    ON DELETE CASCADE, 
-    category TEXT
+    ON DELETE CASCADE
 );
 
 CREATE TABLE orders (
     order_id SERIAL PRIMARY KEY, 
-    user_id INTEGER REFERENCES users(user_id)
-    ON DELETE CASCADE,
     order_date DATE, 
     total_price NUMERIC(10, 2), 
     delivery BOOLEAN, 
-    pick_up BOOLEAN
+    pick_up BOOLEAN,
+    user_id INTEGER REFERENCES users(user_id)
+    ON DELETE CASCADE,
 );
 
 
