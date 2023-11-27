@@ -27,7 +27,7 @@ const createUser = async (user) => {
     } catch(error){
         return error
     }
-}
+};
 
 const deleteUser = async (id) => {
     try{
@@ -39,7 +39,7 @@ const deleteUser = async (id) => {
     } catch(error){
         return error
     }
-}
+};
 
 const updateUser = async (id, user) => {
    try{
