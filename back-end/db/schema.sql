@@ -5,7 +5,7 @@ CREATE DATABASE lovelyskincare_dev;
 \c lovelyskincare_dev;
 
 CREATE TABLE users (
-    id SERIAL PRIMARY KEY, 
+    user_id SERIAL PRIMARY KEY, 
     first_name TEXT,
     last_name TEXT, 
     email TEXT,
@@ -19,7 +19,7 @@ CREATE TABLE orders (
     total_price NUMERIC,
     delivery_date DATE, 
     pick_up BOOLEAN, 
-    user_id INTEGER REFERENCES users(id)
+    user_id INTEGER REFERENCES users(user_id)
 );
 
 CREATE TABLE products (
