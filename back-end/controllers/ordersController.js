@@ -2,7 +2,7 @@ const express = require("express");
 
 const orders = express.Router({ mergeParams: true });
 
-const { getOneUser } = require("../queries/users.js");
+// const { getOneUser } = require("../queries/users.js");
 
 const {
     getAllOrders, 
