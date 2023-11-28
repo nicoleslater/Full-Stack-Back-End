@@ -12,10 +12,6 @@ const {
     updateOrder,
 } = require("../queries/orders");
 
-// const usersController = require("../controllers/usersController.js");
-
-// orders.use(":/users/:/id", usersController);
-
 const { checkName, checkBoolean } = require("../validations/checkOrders.js");
 
 // Users
