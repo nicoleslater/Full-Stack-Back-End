@@ -1,15 +1,13 @@
 const db = require("../db/dbConfig");
 
-const getAllOrders = async (user_id) => {
+const getAllOrders = async () => {
     try{
-        const allOrders = await db.any("SELECT * FROM orders WHERE user_id=$1", 
-        user_id
-        );
+        const allOrders = await db.any("SELECT * FROM orders"); 
         return allOrders
         } catch(err){
             return err
         }
-    }
+}
 
 
 const getOneOrder = async (id) => {
@@ -21,22 +19,20 @@ const getOneOrder = async (id) => {
     }
 };
 
-const createOrder = async (user_id, order) => {
+const createOrder = async (order) => {
     try{
-        const { order_date, total_price, delivery_date, pick_up } = order;
-        const createdOrder = await db.one("INSERT INTO orders (order_date, total_price, delivery_date, pick_up, user_id) VALUES ($1, $2, $3, $4, $5) RETURNING * ", 
-        [order_date, total_price, delivery_date, pick_up, user_id]
-        );
+        const createdOrder = await db.one("INSERT INTO orders (order_date, total_price, delivery_date, pick_up) VALUES ($1, $2, $3, $4) RETURNING *",
+        [order.order_date, order.total_price, order.delivery_date, order.pick_up])
         return createdOrder
-    } catch(err){
-        return err
+    } catch(error){
+        return error
     }
 }
 
 const deleteOrder = async (id) => {
     try{
         const deletedOrder = await db.one(
-            "DELETE from orders WHERE id = $1 RETURNING * ", 
+            "DELETE from orders WHERE id = $1 RETURNING *", 
             id
         );
         return deletedOrder
@@ -45,12 +41,12 @@ const deleteOrder = async (id) => {
     }
 }
 
-const updateOrder = async (order) => {
+const updateOrder = async (id, order) => {
    try{
-        const { order_date, total_price, delivery_date, pick_up, user_id, id} = order;
+        const { order_date, total_price, delivery_date, pick_up } = order;
         const updatedOrder = await db.one(
-            "UPDATE orders SET order_date=$1, total_price=$2, delivery_date=$3, pick_up=$4, user_id=$5 WHERE id=$6 RETURNING * ",
-            [order_date, total_price, delivery_date, pick_up, user_id, id]
+            "UPDATE orders SET order_date=$1, total_price=$2, delivery_date=$3, pick_up=$4 WHERE id=$5 RETURNING *",
+            [order_date, total_price, delivery_date, pick_up, id]
             );
             return updatedOrder
    } catch(err){

@@ -22,8 +22,8 @@ const getOneProduct = async (id) => {
 const createProduct = async (product) => {
     // try & catch db.one
     try{
-        const createdProduct = await db.one("INSERT INTO products (name, description, price, _in_stock, ingredients, inventory_count, category) VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING * ", 
-        [product.name, product.description, product.price, product._in_stock, product.ingredients, product.inventory_count, product.category]);
+        const createdProduct = await db.one("INSERT INTO products (name, description, price, _in_stock, ingredients, inventory_count, category) VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING *", 
+        [product.name, product.description, product.price, product._in_stock, product.ingredients, product.inventory_count, product.category])
         return createdProduct
     } catch(error){
         return error
