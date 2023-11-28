@@ -9,7 +9,7 @@ VALUES
 INSERT INTO products (name, description, price, _in_stock, ingredients, inventory_count, category)
 VALUES 
 ('Rose Butter Kisses', 'Perfect lotion for Winter Season and leaves the skin moisturized', 18.99, true,'Rose Oil, Cocoa Butter & Jasmine Essential Oil', 25, 'Lotion'),
-('Shea Rose', 'Nourshing and exfoliating that is gentle enough for sensitive skin', 9.99, true, 'Shea Butter, Grapeseed Oil & Goat Milk Soap Base', 25,'Lotion'),
+('Shea Rose', 'Nourshing and exfoliating that is gentle enough for sensitive skin', 9.99, true, 'Shea Butter, Rose Oil & Goat Milk Soap Base', 25,'Lotion'),
 ('Rose Honey Soap', 'Conditions the skin leaving it soft and moisturized', 15.99, false, 'Honey Soap Base, Rose Oil & Eucalyptus Essentail Oil', 50, 'Soap');
 
 INSERT INTO orders (order_date, total_price, delivery_date, pick_up)
