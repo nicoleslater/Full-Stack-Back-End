@@ -5,8 +5,8 @@ VALUES
 ('Sharon', 'Jones', 'sharon.jones@gmail.com', '789 Elm St, Smallburg, TX, 83201', true),
 ('Autumn', 'Stevens', 'stevenssavvy@gmail.com', '456 Oak Rd, Suburbatoon, OR, 97123', true),
 ('William', 'Wilson', 'wwilson62@yahoo.com', '1314 Lopez Square Apt 93, North Daniel, NC 28540', true),
-('Caleb', 'Davis', 'davisC@gmail.com', '352 Finley Parkway Apt 5E, East Lydia, NY 12345', false);
-('Sophia', 'Taylor', 's.taylor@aol.com', '2586 Robinson Junctions Suite 04, Lake Andrewburgh, MN 14567', true)
+('Caleb', 'Davis', 'davisC@gmail.com', '352 Finley Parkway Apt 5E, East Lydia, NY 12345', false),
+('Sophia', 'Taylor', 's.taylor@aol.com', '2586 Robinson Junctions Suite 04, Lake Andrewburgh, MN 14567', true);
 
 INSERT INTO products (name, description, price, _in_stock, ingredients, inventory_count, category)
 VALUES 
