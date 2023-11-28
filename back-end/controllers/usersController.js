@@ -8,15 +8,11 @@ const {
     updateUser,
 } = require("../queries/users");
 
-// const ordersController = require("../controllers/ordersController");
-
 const { checkName, checkBoolean } = require("../validations/checkUsers");
 
 const users = express.Router();
 
-// localhost:0000/users/1/orders
-// users.use("/:user_id/orders", ordersController);
-
+// Index
 users.get(":/id", async (req, res) => {
     const { id } = req.params;
     const oneUser = await getOneUser(id)
@@ -27,6 +23,7 @@ users.get(":/id", async (req, res) => {
     }
 });
 
+// Show
 users.get("/", async (req, res) => {
     const allUsers = await getAllUsers();
     if(allUsers[0]){
@@ -36,6 +33,7 @@ users.get("/", async (req, res) => {
     }
 });
 
+// Post
 users.post("/", checkName, checkBoolean, async (req, res) => {
     try{
         const createdUser = await createUser(req.body);
@@ -45,6 +43,7 @@ users.post("/", checkName, checkBoolean, async (req, res) => {
     }
 });
 
+// Delete
 users.delete("/:id", async (req, res) => {
     try{
         const { id } = req.params;
@@ -59,6 +58,7 @@ users.delete("/:id", async (req, res) => {
     }
 });
 
+// Update
 users.put("/:id", async (req, res) => {
     const { id } = req.params;
     const updatedUser = await updateUser(id, req.body);

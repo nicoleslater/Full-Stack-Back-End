@@ -12,8 +12,7 @@ const { checkName, checkBoolean } = require("../validations/checkProducts.js");
 
 const products = express.Router();
 
-// products.use("/:product_id/orders", ordersController)
-
+// Index
 products.get("/:id", async (req, res) => {
     const { id } = req.params;
     const oneProduct = await getOneProduct(id)
@@ -24,6 +23,7 @@ products.get("/:id", async (req, res) => {
     }
 });
 
+// Show
 products.get("/", async (req, res) => {
     const allProducts = await getAllProducts();
     if(allProducts[0]){
@@ -33,6 +33,7 @@ products.get("/", async (req, res) => {
     }
 });
 
+// Post
 products.post("/", checkName, checkBoolean, async (req, res) => {
     try{
        const createdProduct = await createProduct(req.body);
@@ -42,6 +43,7 @@ products.post("/", checkName, checkBoolean, async (req, res) => {
     }
 });
 
+// Delete
 products.delete("/:id", async (req, res) => {
     try{
         const { id } = req.params;
@@ -56,6 +58,7 @@ products.delete("/:id", async (req, res) => {
     }
 });
 
+// Update
 products.put("/:id", async (req, res) => {
     const { id } = req.params;
     const updatedProduct = await updateProduct( {id, ...req.body} );

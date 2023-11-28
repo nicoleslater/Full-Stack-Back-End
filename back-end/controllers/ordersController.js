@@ -1,6 +1,5 @@
 const express = require("express");
-// const orders = express.Router({ mergeParams: true });
-// const { getOneUser } = require("../queries/users.js");
+
 const {
     getAllOrders, 
     getOneOrder, 
@@ -17,7 +16,7 @@ const orders = express.Router();
 // Orders
 // Products
 
-// Index users/1/orders
+// Index 
 orders.get("/:id", async (req, res) => {
    const { id } = req.params;
    const oneOrder = await getOneOrder(id)
@@ -29,7 +28,7 @@ orders.get("/:id", async (req, res) => {
    }
 });
 
-
+//  Show
 orders.get("/", async (req, res) => {
     const allOrders = await getAllOrders();
    if(allOrders[0]){
