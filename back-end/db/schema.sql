@@ -5,7 +5,7 @@ CREATE DATABASE lovelyskincare_dev;
 \c lovelyskincare_dev;
 
 CREATE TABLE users (
-    id SERIAL PRIMARY KEY, 
+    user_id SERIAL PRIMARY KEY, 
     first_name TEXT,
     last_name TEXT, 
     email TEXT,
