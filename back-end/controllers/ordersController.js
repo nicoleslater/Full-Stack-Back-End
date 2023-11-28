@@ -1,6 +1,6 @@
 const express = require("express");
-const orders = express.Router({ mergeParams: true });
-const { getOneUser } = require("../queries/users.js");
+// const orders = express.Router({ mergeParams: true });
+// const { getOneUser } = require("../queries/users.js");
 const {
     getAllOrders, 
     getOneOrder, 
@@ -9,58 +9,51 @@ const {
     updateOrder,
 } = require("../queries/orders");
 
+const { checkName, checkBoolean } = require("../validations/checkOrders");
 
-
-
+const orders = express.Router();
 
 // Users
 // Orders
 // Products
 
 // Index users/1/orders
-orders.get("/", async (req, res) => {
-   const { user_id } = req.params;
-   try{
-    const user = await getOneUser(user_id);
-    const allOrders = await getAllOrders(user_id);
-    res.json({ ...user, allOrders });
-   } catch(err){
-    res.json(err);
+orders.get("/:id", async (req, res) => {
+   const { id } = req.params;
+   const oneOrder = await getOneOrder(id)
+    if(oneOrder){
+    // const allOrders = await getAllOrders(user_id);
+    res.json(oneOrder)
+   } else{
+    res.status(404).json({ error: "Sorry That Order is not Available!"});
    }
 });
 
-// Show users/1/reviews/1
-orders.get(":/order_id", async (req, res) => {
-    const { order_id, user_id } = req.params;
-    try{
-        const order = await getOneOrder(order_id);
-        const user = await getOneUser(user_id);
-        if(order.id){
-            res.json({ ...user, order });
-        }
-    } catch(err){
-        res.json(err);
-    }
+
+orders.get("/", async (req, res) => {
+    const allOrders = await getAllOrders();
+   if(allOrders[0]){
+    res.status(200).json({ success: true, data: { payload: allOrders } });
+} else{
+    res.status(404).json({ success: false, data: { error: "Error (Order Controller) with the Server, please try again!" } });
+}
 });
 
 // Post
-orders.post("/", async (req, res) => {
+orders.post("/", checkName, checkBoolean,  async (req, res) => {
     try{
-        const { user_id } = req.params;
-        const createdOrder = await createOrder(user_id, req.body)
-        res.json(createdOrder);
-        // console.log(createdOrder)
-    } catch(err){
+        const createdOrder = await createOrder(req.body);
+        res.json(createdOrder)
+    } catch(error){
         res.status(404).json({ error: "Please Return to the Controller!(Order) there is a server error!"});
     }
 });
 
 // Delete
-orders.delete("/:order_id", async (req, res) => {
+orders.delete("/:id", async (req, res) => {
     try{
-        const { order_id } = req.params;
-        const deletedOrder = await deleteOrder(order_id);
-        // console.log(deletedOrder)
+        const { id } = req.params;
+        const deletedOrder = await deleteOrder(id);
         if(deletedOrder){
             res.status(200).json({ success: true, payload: { data: deletedOrder }, });
         } else {
@@ -73,11 +66,10 @@ orders.delete("/:order_id", async (req, res) => {
 
 // Update
 orders.put("/:id", async (req, res) => {
-    const { id, user_id } = req.params;
-    const updatedOrder = await updateOrder( {user_id, id, ...req.body} );
-    // console.log(updatedOrder)
+    const { id } = req.params;
+    const updatedOrder = await updateOrder(id, req.body);
     if(updatedOrder.id){
-        res.status(200).json(updatedOrder)
+        res.status(200).json(updatedOrder);
     } else{
         res.status(404).json("Sorry there is NO Order found with that ID");
     }
