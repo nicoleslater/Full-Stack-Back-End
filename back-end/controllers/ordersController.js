@@ -12,10 +12,12 @@ const {
 
 
 
-// orders.use("/:user_id/orders", usersController);
+
 // Users
 // Orders
 // Products
+
+// Index users/1/orders
 orders.get("/", async (req, res) => {
    const { user_id } = req.params;
    try{
@@ -27,6 +29,7 @@ orders.get("/", async (req, res) => {
    }
 });
 
+// Show users/1/reviews/1
 orders.get(":/order_id", async (req, res) => {
     const { order_id, user_id } = req.params;
     try{
@@ -40,6 +43,7 @@ orders.get(":/order_id", async (req, res) => {
     }
 });
 
+// Post
 orders.post("/", async (req, res) => {
     try{
         const { user_id } = req.params;
@@ -51,6 +55,7 @@ orders.post("/", async (req, res) => {
     }
 });
 
+// Delete
 orders.delete("/:order_id", async (req, res) => {
     try{
         const { order_id } = req.params;
@@ -66,6 +71,7 @@ orders.delete("/:order_id", async (req, res) => {
     }
 });
 
+// Update
 orders.put("/:id", async (req, res) => {
     const { id, user_id } = req.params;
     const updatedOrder = await updateOrder( {user_id, id, ...req.body} );
