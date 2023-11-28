@@ -28,6 +28,6 @@ CREATE TABLE orders (
     order_id SERIAL PRIMARY KEY, 
     order_date DATE, 
     total_price NUMERIC,
-    delivery_date DATE, 
+    delivery_date TEXT, 
     pick_up BOOLEAN 
 );
