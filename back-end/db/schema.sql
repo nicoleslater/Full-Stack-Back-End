@@ -29,5 +29,6 @@ CREATE TABLE orders (
     order_date TEXT, 
     total_price NUMERIC,
     delivery_date TEXT, 
-    pick_up BOOLEAN 
+    pick_up BOOLEAN,
+    pick_up_date TEXT
 );
