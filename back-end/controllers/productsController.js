@@ -12,26 +12,34 @@ const { checkName, checkBoolean } = require("../validations/checkProducts.js");
 
 const products = express.Router();
 
-products.get(":/id", async (req, res) => {
+products.get("/:id", async (req, res) => {
     const { id } = req.params;
-    const oneProduct = await getOneProduct(id)
-    if(oneProduct){
-        res.json(oneProduct)
-    } else{
-        res.status(404).json({ error: "Sorry that product does not exist!"});
+    try{
+        const order = await getOneOrder(order_id);
+        const allProducts = await getAllProducts(order_id);
+        res.json({ ...order, allProducts });
+    } catch(err){
+        res.json(err);
     }
 });
 
-products.get("/", async (req, res) => {
-  const allProducts = await getAllProducts();
-  if(allProducts[0]){
-    res.status(200)
-    .json({ success: true, data: { error: "There is an error please go back!" } });
-  }
+products.get(":/product_id", async (req, res) => {
+    const { product_id, order_id } = req.params;
+    // const oneProduct = await getOneProduct(id)
+    try{
+        const product = await getOneProduct(product_id);
+        const order = await getOneOrder(order_id);
+        if(product.id){
+            res.json({ ...order, product});
+        }
+    } catch(err){
+        res.json(err);
+    }
 });
 
 products.post("/", checkName, checkBoolean, async (req, res) => {
     try{
+        const { order_id } = req.params;
         const createdProduct = await createProduct(order_id, req.body);
         res.json(createdProduct)
     } catch(error){

@@ -15,7 +15,15 @@ const { checkName, checkBoolean } = require("../validations/checkOrders.js");
 // Users
 // Orders
 // Products
-
+orders.get("/", async (req, res) => {
+    const allOrders = await getAllOrders();
+    if(allOrders[0]){
+        console.log(allOrders)
+        res.status(200).json({ success: true, data: { payload: allOrders } });
+    } else{
+        res.status(404).json({ success: false, data: { error: "Error with the Server please TRY again!" } });
+    } 
+});
 
 orders.get(":/id", async (req, res) => {
     const { id } = req.params;
@@ -26,16 +34,6 @@ orders.get(":/id", async (req, res) => {
         } else {
         res.status(404).json({ error: "Sorry that Order is not Found!"});
         }
-});
-
-orders.get("/", async (req, res) => {
-    const allOrders = await getAllOrders();
-    if(allOrders[0]){
-        console.log(allOrders)
-        res.status(200).json({ success: true, data: { payload: allOrders } });
-    } else{
-        res.status(404).json({ success: false, data: { error: "Error with the Server please TRY again!" } });
-    } 
 });
 
 orders.post("/", checkName, checkBoolean, async (req, res) => {
