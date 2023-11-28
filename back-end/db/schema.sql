@@ -14,16 +14,16 @@ CREATE TABLE users (
 );
 
 CREATE TABLE orders ( 
-    id SERIAL PRIMARY KEY, 
+    order_id SERIAL PRIMARY KEY, 
     order_date DATE, 
     total_price NUMERIC,
     delivery_date DATE, 
     pick_up BOOLEAN, 
-    id INTEGER REFERENCES users(id)
+    user INTEGER REFERENCES users(id)
 );
 
 CREATE TABLE products (
-    id SERIAL PRIMARY KEY, 
+    product_id SERIAL PRIMARY KEY, 
     name TEXT NOT NULL, 
     description TEXT, 
     price NUMERIC, 
