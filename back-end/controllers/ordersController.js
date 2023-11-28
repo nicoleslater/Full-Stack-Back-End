@@ -2,8 +2,6 @@ const express = require("express");
 
 const orders = express.Router({ mergeParams: true });
 
-// const { getOneUser } = require("../queries/users.js");
-
 const {
     getAllOrders, 
     getOneOrder, 
@@ -20,50 +18,45 @@ const { checkName, checkBoolean } = require("../validations/checkOrders.js");
 
 
 orders.get(":/id", async (req, res) => {
-    const { order_id, user_id } = req.params;
-    try{
-        const order = await getOneOrder(order_id);
-        const user = await getOneUser(user_id);
-        if(order_id){
-            res.json({ ...user, order });
+    const { id } = req.params;
+    const oneOrder = await getOneOrder(id)
+        if(oneOrder){
+            res.json(oneOrder)
+            console.log(oneUser)
+        } else {
+        res.status(404).json({ error: "Sorry that Order is not Found!"});
         }
-    } catch(err){
-        res.json(err);
-    }
 });
 
 orders.get("/", async (req, res) => {
-    const { user_id } = req.params;
-    try{
-        const user = await getOneUser(user_id);
-        const allOrders = await getAllOrders(user_id);
-        res.json({ ...user, allOrders });
-    } catch(err){
-        res.json(err);
-    }
+    const allOrders = await getAllOrders();
+    if(allOrders[0]){
+        console.log(allOrders)
+        res.status(200).json({ success: true, data: { payload: allOrders } });
+    } else{
+        res.status(404).json({ success: false, data: { error: "Error with the Server please TRY again!" } });
+    } 
 });
 
 orders.post("/", checkName, checkBoolean, async (req, res) => {
     try{
-        const { user_id } = req.params;
-        const createdOrder = await createOrder(user_id, req.body)
-        res.json(createdOrder);
-    } catch(err){
-        res.status(400).json({ error: "Please go Back there is a server error!"});
+        const createdOrder = await createOrder(req.body);
+        res.json(createdOrder)
+        console.log(createdOrder)
+    } catch(error){
+        res.status(404).json({ error: "Please Return to the Controller!(Order) there is a server error!"});
     }
 });
 
 orders.delete("/:id", async (req, res) => {
     try{
         const { id } = req.params;
-        const deletedOrder = await deleteOrder(order_id);
+        const deletedOrder = await deleteOrder(id);
+        console.log(deletedOrder)
         if(deletedOrder){
-            res.status(200).json({ 
-                success: true, 
-                payload: { data: deletedOrder,},
-                });
+            res.status(200).json({ success: true, payload: { data: deletedOrder, } })
         } else {
-            res.status(404).json("Sorry that order is not found!");
+            res.status(404).json("Sorry that ORDER is not found!");
         }
     } catch(err){
         res.send(err)
@@ -71,12 +64,13 @@ orders.delete("/:id", async (req, res) => {
 });
 
 orders.put("/:id", async (req, res) => {
-    const { id, user_id } = req.params;
-    const updatedOrder = await updateOrder( {user_id, id, ...req.body} );
+    const { id } = req.params;
+    const updatedOrder = await updateOrder(id, req.body);
+    console.log(updatedOrder)
     if(updatedOrder.id){
         res.status(200).json(updatedOrder);
     } else{
-        res.status(404).json("NO Order found with that ID");
+        res.status(404).json("Sorry there is NO Order found with that ID");
     }
 });
 

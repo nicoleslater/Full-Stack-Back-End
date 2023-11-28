@@ -29,11 +29,9 @@ users.get(":/id", async (req, res) => {
 users.get("/", async (req, res) => {
     const allUsers = await getAllUsers();
     if(allUsers[0]){
-        res.status(200)
-        .json({ success: true, data: { payload: allUsers } });
+        res.status(200).json({ success: true, data: { payload: allUsers } });
     } else{
-        res.status(404)
-        .json({ success: false, data: { error: "Error with the Server, please try again!" } });
+        res.status(404).json({ success: false, data: { error: "Error (User Controller) with the Server, please try again!" } });
     }
 });
 
@@ -42,7 +40,7 @@ users.post("/", checkName, checkBoolean, async (req, res) => {
         const createdUser = await createUser(req.body);
         res.json(createdUser)
     } catch(error){
-        res.status(404).json({ error: "Please go Back there is a server error!"});
+        res.status(404).json({ error: "Please go Back (UserController) there is a server error!"});
     }
 });
 
