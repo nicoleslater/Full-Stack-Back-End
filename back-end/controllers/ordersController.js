@@ -1,8 +1,6 @@
 const express = require("express");
-
 const orders = express.Router({ mergeParams: true });
 const { getOneUser } = require("../queries/users.js");
-
 const {
     getAllOrders, 
     getOneOrder, 
@@ -11,8 +9,10 @@ const {
     updateOrder,
 } = require("../queries/orders");
 
-// const { checkName, checkBoolean } = require("../validations/checkOrders.js");
 
+
+
+// orders.use("/:user_id/orders", usersController);
 // Users
 // Orders
 // Products
@@ -32,7 +32,7 @@ orders.get(":/order_id", async (req, res) => {
     try{
         const order = await getOneOrder(order_id);
         const user = await getOneUser(user_id);
-        if(order_id){
+        if(order.id){
             res.json({ ...user, order });
         }
     } catch(err){
@@ -43,8 +43,8 @@ orders.get(":/order_id", async (req, res) => {
 orders.post("/", async (req, res) => {
     try{
         const { user_id } = req.params;
-        const createdOrder = await createOrder(user_id, req.body);
-        res.json(createdOrder)
+        const createdOrder = await createOrder(user_id, req.body)
+        res.json(createdOrder);
         // console.log(createdOrder)
     } catch(err){
         res.status(404).json({ error: "Please Return to the Controller!(Order) there is a server error!"});
@@ -71,7 +71,7 @@ orders.put("/:id", async (req, res) => {
     const updatedOrder = await updateOrder( {user_id, id, ...req.body} );
     // console.log(updatedOrder)
     if(updatedOrder.id){
-        res.status(200).json(updatedOrder);
+        res.status(200).json(updatedOrder)
     } else{
         res.status(404).json("Sorry there is NO Order found with that ID");
     }
