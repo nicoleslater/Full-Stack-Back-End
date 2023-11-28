@@ -18,8 +18,7 @@ CREATE TABLE orders (
     order_date DATE, 
     total_price NUMERIC,
     delivery_date DATE, 
-    pick_up BOOLEAN, 
-    user_id INTEGER REFERENCES users(id)
+    pick_up BOOLEAN 
 );
 
 CREATE TABLE products (
