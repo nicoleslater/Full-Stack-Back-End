@@ -13,14 +13,6 @@ CREATE TABLE users (
     preferred_delivery BOOLEAN 
 );
 
-CREATE TABLE orders ( 
-    order_id SERIAL PRIMARY KEY, 
-    order_date DATE, 
-    total_price NUMERIC,
-    delivery_date DATE, 
-    pick_up BOOLEAN 
-);
-
 CREATE TABLE products (
     product_id SERIAL PRIMARY KEY, 
     name TEXT NOT NULL, 
@@ -30,4 +22,12 @@ CREATE TABLE products (
     ingredients TEXT, 
     inventory_count NUMERIC,
     category TEXT
+);
+
+CREATE TABLE orders ( 
+    order_id SERIAL PRIMARY KEY, 
+    order_date DATE, 
+    total_price NUMERIC,
+    delivery_date DATE, 
+    pick_up BOOLEAN 
 );
