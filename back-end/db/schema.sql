@@ -25,7 +25,8 @@ CREATE TABLE products (
 );
 
 CREATE TABLE orders ( 
-    order_id SERIAL PRIMARY KEY, 
+    order_id SERIAL PRIMARY KEY,
+    product TEXT, 
     order_date TEXT, 
     total_price NUMERIC,
     delivery_date TEXT, 

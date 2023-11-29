@@ -16,10 +16,10 @@ VALUES
 ('Rose Mist', 'Refreshing rose water spray to set makeup and hydrate skin', 11.99, true, 'Rose Water, Purified Water & Green Tea', 10, 'Face Mist'),
 ('Rose Honey Soap', 'Conditions the skin leaving it soft and moisturized', 15.99, true, 'Honey Soap Base, Rose Oil & Eucalyptus Essentail Oil', 50, 'Soap');
 
-INSERT INTO orders (order_date, total_price, delivery_date, pick_up, pick_up_date)
+INSERT INTO orders (order_date, product, total_price, delivery_date, pick_up, pick_up_date)
 VALUES 
-('01-05-2023', 9.99, '01-08-2023', false, 'N/A'),
-('03-11-2023', 9.99, '03-15-2023', false, 'N/A'),
-('11-10-2023', 18.99, '11-18-2023', false, 'N/A'),
-('05-25-2023', 11.99, '05-28-2023', false, 'N/A'),
-('02-14-2023', 15.99, 'N/A', true, '02-17-2023');
+('01-05-2023', 'Shea Rose', 9.99, '01-08-2023', false, 'N/A'),
+('03-11-2023', 'Winter Rose', 9.99, '03-15-2023', false, 'N/A'),
+('11-10-2023', 'Rose Butter Kisses', 18.99, '11-18-2023', false, 'N/A'),
+('05-25-2023', 'Rose Mist', 11.99, '05-28-2023', false, 'N/A'),
+('02-14-2023', 'Rose Honey Soap',15.99, 'N/A', true, '02-17-2023');
