@@ -8,7 +8,7 @@ VALUES
 ('Caleb', 'Davis', 'davisC@gmail.com', '352 Finley Parkway Apt 5E, East Lydia, NY 12345', false),
 ('Sophia', 'Taylor', 's.taylor@aol.com', '2586 Robinson Junctions Suite 04, Lake Andrewburgh, MN 14567', true);
 
-INSERT INTO products (name, description, price, _in_stock, ingredients, inventory_count, category)
+INSERT INTO products (name, description, price, stocked, ingredients, inventory_count, category)
 VALUES 
 ('Rose Butter Kisses', 'Perfect lotion for Winter Season and leaves the skin moisturized', 18.99, true,'Rose Oil, Cocoa Butter & Jasmine Essential Oil', 25, 'Lotion'),
 ('Shea Rose', 'Nourshing and exfoliating that is gentle enough for sensitive skin', 9.99, true, 'Shea Butter, Rose Oil & Goat Milk Soap Base', 25,'Lotion'),
