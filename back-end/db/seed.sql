@@ -1,5 +1,18 @@
 \c lovelyskincare_dev;
 
+INSERT INTO users (first_name, last_name, email, shipping_address, preferred_delivery)
+VALUES 
+('Sharon', 'Jones', 'sharon.jones@gmail.com', '789 Elm St, Smallburg, TX, 83201', true),
+('Autumn', 'Stevens', 'stevenssavvy@gmail.com', '456 Oak Rd, Suburbatoon, OR, 97123', true),
+('William', 'Wilson', 'wwilson62@yahoo.com', '1314 Lopez Square Apt 93, North Daniel, NC 28540', true),
+('Caleb', 'Davis', 'davisC@gmail.com', '352 Finley Parkway Apt 5E, East Lydia, NY 12345', false),
+('Elijah', 'Thompson', 'elijah.thompson@gmail.com', '123 Pine St, Townsville, CA, 90210', true),
+('Olivia', 'Garcia', 'olivia.garcia@yahoo.com', '567 Birch Ln, Villageton, FL, 33601', false),
+('Jackson', 'Baker', 'jbaker84@gmail.com', '789 Oak Ave, Countryside, AZ, 85001', true),
+('Lily', 'Miller', 'lily.miller@hotmail.com', '101 Cedar Rd, Suburbia, WA, 98001', false),
+('Noah', 'Hill', 'noah.hill@gmail.com', '876 Elm Blvd, Cityville, TX, 75001', true),
+('Sophia', 'Taylor', 's.taylor@aol.com', '2586 Robinson Junctions Suite 04, Lake Andrewburgh, MN 14567', true);
+
 INSERT INTO products (name, description, price, stocked, ingredients, inventory_count, category)
 VALUES 
 ('Rose Butter Kisses', 'Perfect lotion for Winter Season and leaves the skin moisturized', 18.99, true,'Rose Oil, Cocoa Butter & Jasmine Essential Oil', 25, 'Lotion'),
