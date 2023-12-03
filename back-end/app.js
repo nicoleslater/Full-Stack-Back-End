@@ -17,7 +17,7 @@ app.use("/products", productsController);
 
 
 app.get("/", (req, res) => {
-    res.send("Welcome to Lovely Nikki Skin Care");
+    res.send("Welcome to Lovely Nikki Skin Care Database");
 });
 
 app.get("*", (req, res) => {
