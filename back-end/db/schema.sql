@@ -9,7 +9,7 @@ CREATE TABLE users (
     first_name TEXT,
     last_name TEXT, 
     email TEXT,
-    shipping_address TEXT, 
+    shipping_address TEXT,
     preferred_delivery BOOLEAN 
 );
 
