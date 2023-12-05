@@ -20,7 +20,6 @@ const getOneOrder = async (id) => {
 };
 
 const createOrder = async (order) => {
-    // const user_id = 
     try{
         const createdOrder = await db.one("INSERT INTO orders (order_date, total_price, delivery_date, pick_up) VALUES ($1, $2, $3, $4) RETURNING *",
         [order.order_date, order.total_price, order.delivery_date, order.pick_up])
