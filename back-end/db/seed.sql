@@ -1,17 +1,17 @@
 \c lovelyskincare_dev;
 
-INSERT INTO users (first_name, last_name, email, shipping_address, preferred_delivery)
+INSERT INTO users (name, email, shipping_address, preferred_delivery)
 VALUES 
-('Sharon', 'Jones', 'sharon.jones@gmail.com', '789 Elm St, Smallburg, TX, 83201', true),
-('Autumn', 'Stevens', 'stevenssavvy@gmail.com', '456 Oak Rd, Suburbatoon, OR, 97123', true),
-('William', 'Wilson', 'wwilson62@yahoo.com', '1314 Lopez Square Apt 93, North Daniel, NC 28540', true),
-('Caleb', 'Davis', 'davisC@gmail.com', '352 Finley Parkway Apt 5E, East Lydia, NY 12345', false),
-('Elijah', 'Thompson', 'elijah.thompson@gmail.com', '123 Pine St, Townsville, CA, 90210', true),
-('Olivia', 'Garcia', 'olivia.garcia@yahoo.com', '567 Birch Ln, Villageton, FL, 33601', false),
-('Jackson', 'Baker', 'jbaker84@gmail.com', '789 Oak Ave, Countryside, AZ, 85001', true),
-('Lily', 'Miller', 'lily.miller@hotmail.com', '101 Cedar Rd, Suburbia, WA, 98001', false),
-('Noah', 'Hill', 'noah.hill@gmail.com', '876 Elm Blvd, Cityville, TX, 75001', true),
-('Sophia', 'Taylor', 's.taylor@aol.com', '2586 Robinson Junctions Suite 04, Lake Andrewburgh, MN 14567', true);
+('Sharon Jones', 'sharon.jones@gmail.com', '789 Elm St, Smallburg, TX, 83201', true),
+('Autumn Stevens', 'stevenssavvy@gmail.com', '456 Oak Rd, Suburbatoon, OR, 97123', true),
+('William Wilson', 'wwilson62@yahoo.com', '1314 Lopez Square Apt 93, North Daniel, NC 28540', true),
+('Caleb Davis', 'davisC@gmail.com', '352 Finley Parkway Apt 5E, East Lydia, NY 12345', false),
+('Elijah Thompson', 'elijah.thompson@gmail.com', '123 Pine St, Townsville, CA, 90210', true),
+('Olivia Garcia', 'olivia.garcia@yahoo.com', '567 Birch Ln, Villageton, FL, 33601', false),
+('Jackson Baker', 'jbaker84@gmail.com', '789 Oak Ave, Countryside, AZ, 85001', true),
+('Lily Miller', 'lily.miller@hotmail.com', '101 Cedar Rd, Suburbia, WA, 98001', false),
+('Noah Hill', 'noah.hill@gmail.com', '876 Elm Blvd, Cityville, TX, 75001', true),
+('Sophia Taylor', 's.taylor@aol.com', '2586 Robinson Junctions Suite 04, Lake Andrewburgh, MN 14567', true);
 
 INSERT INTO products (name, description, price, stocked, ingredients, inventory, category)
 VALUES 
@@ -26,7 +26,7 @@ VALUES
 ('Cocoa Bliss Body Butter', 'Indulgent body butter with the goodness of cocoa', 19.99, true, 'Cocoa Butter, Vanilla Oil & Jojoba Oil', 20, 'Body Butter'),
 ('Citrus Burst Face Scrub', 'Energizing face scrub with citrus extracts', 16.99, true, 'Citrus Extracts, Sugar & Jojoba Beads', 15, 'Face Scrub');
 
-INSERT INTO orders (order_date, product, total_price, delivery_date, pick_up, pick_up_date)
+INSERT INTO orders (order_date, name, total_price, delivery_date, pick_up, pick_up_date)
 VALUES 
 ('01-05-2023', 'Shea Rose', 9.99, '01-08-2023', false, 'N/A'),
 ('03-11-2023', 'Winter Rose', 9.99, '03-15-2023', false, 'N/A'),
