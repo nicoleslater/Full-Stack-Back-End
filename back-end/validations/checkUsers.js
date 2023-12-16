@@ -1,5 +1,5 @@
 const checkName = (req, res, next) => {
-    if(req.body.first_name){
+    if(req.body.name){
         console.log("Name is OK")
         next()
     } else{
