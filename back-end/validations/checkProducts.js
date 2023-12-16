@@ -8,7 +8,7 @@ const checkName = (req, res, next) => {
 }
 
 const checkBoolean = (req, res, next) => {
-    if(req.body._in_stock === true || req.body._in_stock === false){
+    if(req.body.stocked === true || req.body.stocked === false){
         next()
     } else{
         res.status(400).json( { error: "_in_stock must be a boolean value"})
