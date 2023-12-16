@@ -1,4 +1,4 @@
-cd DROP DATABASE IF EXISTS lovelyskincare_dev;
+DROP DATABASE IF EXISTS lovelyskincare_dev;
 
 CREATE DATABASE lovelyskincare_dev;
 
