@@ -2,6 +2,7 @@ const express = require("express");
 
 const {
     getAllUsers,
+    getOneUserByEmail,
     getOneUser,
     createUser, 
     deleteUser, 

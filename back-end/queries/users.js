@@ -19,6 +19,15 @@ const getOneUser = async (id) => {
     }
 };
 
+const getOneUserByEmail = async (email) => {
+    try{
+        const oneUserByEmail = await db.one("SELECT * FROM users WHERE email=$1", email);
+        return oneUserByEmail
+    } catch{
+        return error
+    }
+};
+
 const createUser = async (user) => {
     try{
         const createdUser = await db.one("INSERT INTO users (name, email, shipping_address, preferred_delivery) VALUES ($1, $2, $3, $4) RETURNING *", 
@@ -57,6 +66,7 @@ const updateUser = async (id, user) => {
 module.exports = {
     getAllUsers, 
     getOneUser, 
+    getOneUserByEmail,
     createUser, 
     deleteUser, 
     updateUser,
