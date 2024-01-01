@@ -21,7 +21,7 @@ const getOneUser = async (id) => {
 
 const getOneUserByEmail = async (email) => {
     try{
-        const oneUserByEmail = await db.one("SELECT * FROM users WHERE email=$1", email);
+        const oneUserByEmail = await db.one("SELECT * FROM users WHERE email=$3", email);
         return oneUserByEmail
     } catch{
         return error
