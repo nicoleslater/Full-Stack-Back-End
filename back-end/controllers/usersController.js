@@ -24,6 +24,16 @@ users.get(":/id", async (req, res) => {
     }
 });
 
+users.get(":/email", async (req, res) => {
+    const { email } = req.params;
+    const userByEmail = await getOneUserByEmail(email)
+    if(userByEmail){
+        res.json(userByEmail)
+    } else{
+        res.status(404).json({ error: "Sorry that user is not found!"});
+    }
+});
+
 // Show
 users.get("/", async (req, res) => {
     const allUsers = await getAllUsers();
