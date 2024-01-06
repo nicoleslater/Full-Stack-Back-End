@@ -32,7 +32,7 @@ const createOrder = async (order) => {
 const deleteOrder = async (id) => {
     try{
         const deletedOrder = await db.one(
-            "DELETE from orders WHERE id = $1 RETURNING *", 
+            "DELETE from orders WHERE order_id = $1 RETURNING *", 
             id
         );
         return deletedOrder

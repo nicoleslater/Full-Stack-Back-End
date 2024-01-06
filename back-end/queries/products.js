@@ -35,7 +35,7 @@ const deleteProduct = async (id) => {
     console.log(`<------ Deleting ${id}`)
     try{
         const deletedProduct = await db.one(
-            "DELETE from products WHERE id = $1 RETURNING *",
+            "DELETE from products WHERE product_id = $1 RETURNING *",
             id
         );
         return deletedProduct
