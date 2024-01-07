@@ -50,20 +50,21 @@ try{
 
 
 // Post
-orders.post("/", checkName, checkBoolean,  async (req, res) => {
+orders.post("/", async (req, res) => {
     try{
-        const createdOrder = await createOrder(req.body);
-        res.json(createdOrder)
-    } catch(error){
-        res.status(404).json({ error: "Please Return to the Controller!(Order) there is a server error!"});
+        const { user_id } = req.params;
+        const createdOrder = await createOrder(user_id, req.body)
+        req.json(createdOrder);
+    } catch(err){
+        res.status(400).json( { error: "NOOOOOOO! "});
     }
 });
 
 // Delete
-orders.delete("/:id", async (req, res) => {
+orders.delete("/:order_id", async (req, res) => {
     try{
-        const { id } = req.params;
-        const deletedOrder = await deleteOrder(id);
+        const { order_id } = req.params;
+        const deletedOrder = await deleteOrder(order_id);
         if(deletedOrder){
             res.status(200).json({ success: true, payload: { data: deletedOrder }, });
         } else {
@@ -76,8 +77,8 @@ orders.delete("/:id", async (req, res) => {
 
 // Update
 orders.put("/:id", async (req, res) => {
-    const { id } = req.params;
-    const updatedOrder = await updateOrder(id, req.body);
+    const { id, user_id } = req.params;
+    const updatedOrder = await updateOrder({ order_id, id, ...req.body });
     if(updatedOrder.id){
         res.status(200).json(updatedOrder);
     } else{
