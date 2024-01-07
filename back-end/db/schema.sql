@@ -25,11 +25,12 @@ CREATE TABLE products (
 
 CREATE TABLE orders ( 
     order_id SERIAL PRIMARY KEY,
-    customer_id
     name TEXT, 
     order_date TEXT, 
     total_price NUMERIC,
     delivery_date TEXT, 
     pick_up BOOLEAN,
-    pick_up_date TEXT
+    pick_up_date TEXT,
+    user_id INTEGER REFERENCES users (id)
+    ON DELETE CASCADE
 );
