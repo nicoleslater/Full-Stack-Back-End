@@ -13,6 +13,7 @@ const ordersController = require("./ordersController");
 const { checkName, checkBoolean } = require("../validations/checkUsers");
 
 const users = express.Router();
+
 users.use("/:user_id/orders", ordersController);
 
 // Index
