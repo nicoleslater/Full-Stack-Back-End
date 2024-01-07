@@ -9,10 +9,10 @@ const getAllProducts = async () => {
      }
 };
 
-const getOneProduct = async (product_id) => {
+const getOneProduct = async (id) => {
     // try & catch db.one
     try{
-        const oneProduct = await db.one("SELECT * FROM products WHERE product_id=$1", product_id)
+        const oneProduct = await db.one("SELECT * FROM products WHERE id=$1", id)
         return oneProduct
     } catch(error){
         return error
@@ -30,13 +30,13 @@ const createProduct = async (product) => {
     }
 };
 
-const deleteProduct = async (product_id) => {
+const deleteProduct = async (id) => {
     // try & catch db.one
-    console.log(`<------ Deleting ${product_id}`)
+    console.log(`<------ Deleting ${id}`)
     try{
         const deletedProduct = await db.one(
-            "DELETE from products WHERE product_id = $1 RETURNING *",
-            product_id
+            "DELETE from products WHERE id = $1 RETURNING *",
+            id
         );
         return deletedProduct
     } catch(error){
@@ -44,13 +44,13 @@ const deleteProduct = async (product_id) => {
     }
 };
 
-const updateProduct = async (product_id, product) => {
+const updateProduct = async (id, product) => {
     // try & catch db.one
     try{
         const { name, description, price, stocked, ingredients, inventory, category } = product;
         const updatedProduct = await db.one(
             "UPDATE products SET name=$1, description=$2, price=$3, stocked=$4, ingredients=$5, inventory_count=$6, category=$7 WHERE product_id=$8 RETURNING *",
-            [name, description, price, stocked, ingredients, inventory, category, product_id]
+            [name, description, price, stocked, ingredients, inventory, category, id]
         );
         return updatedProduct
     } catch(err){
