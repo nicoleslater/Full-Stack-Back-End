@@ -25,6 +25,7 @@ CREATE TABLE products (
 
 CREATE TABLE orders ( 
     order_id SERIAL PRIMARY KEY,
+    customer_id
     name TEXT, 
     order_date TEXT, 
     total_price NUMERIC,

@@ -2,16 +2,18 @@ const express = require("express");
 
 const {
     getAllUsers,
-    getOneUserByEmail,
     getOneUser,
     createUser, 
     deleteUser, 
     updateUser,
 } = require("../queries/users");
 
+const ordersController = require("./ordersController");
+
 const { checkName, checkBoolean } = require("../validations/checkUsers");
 
 const users = express.Router();
+users.use("/:user_id/orders", ordersController);
 
 // Index
 users.get(":/id", async (req, res) => {
@@ -19,16 +21,6 @@ users.get(":/id", async (req, res) => {
     const oneUser = await getOneUser(id)
     if(oneUser){
         res.json(oneUser)
-    } else{
-        res.status(404).json({ error: "Sorry that user is not found!"});
-    }
-});
-
-users.get(":/email", async (req, res) => {
-    const { email } = req.params;
-    const userByEmail = await getOneUserByEmail(email)
-    if(userByEmail){
-        res.json(userByEmail)
     } else{
         res.status(404).json({ error: "Sorry that user is not found!"});
     }
