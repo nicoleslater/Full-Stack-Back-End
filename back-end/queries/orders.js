@@ -10,9 +10,9 @@ const getAllOrders = async (user_id) => {
 }
 
 
-const getOneOrder = async (id) => {
+const getOneOrder = async (order_id) => {
     try{
-        const oneOrder = await db.one("SELECT * FROM orders WHERE id=$1", id);
+        const oneOrder = await db.one("SELECT * FROM orders WHERE order_id=$1", order_id);
         return oneOrder
     } catch(error){
         return error
@@ -32,11 +32,11 @@ const createOrder = async (user_id, order) => {
 }
 }
 
-const deleteOrder = async (id) => {
+const deleteOrder = async (order_id) => {
     try{
         const deletedOrder = await db.one(
-            "DELETE from orders WHERE id = $1 RETURNING *", 
-            id
+            "DELETE from orders WHERE order_id = $1 RETURNING *", 
+            order_id
         );
         return deletedOrder
     } catch(error){
@@ -46,10 +46,10 @@ const deleteOrder = async (id) => {
 
 const updateOrder = async (order) => {
    try{
-        const { name, order_date, total_price, delivery_date, pick_up, pick_up_date, id, user_id } = order;
+        const { name, order_date, total_price, delivery_date, pick_up, pick_up_date, order_id, user_id } = order;
         const updatedOrder = await db.one(
-            `UPDATE orders SET name=$1, order_date=$2, total_price=$3, delivery_date=$4, pick_up=$5, pick_up_date=$6, user_id=$7 WHERE id=$8 RETURNING *`,
-            [name, order_date, total_price, delivery_date, pick_up, pick_up_date, user_id, id]
+            `UPDATE orders SET name=$1, order_date=$2, total_price=$3, delivery_date=$4, pick_up=$5, pick_up_date=$6, user_id=$7 WHERE order_id=$8 RETURNING *`,
+            [name, order_date, total_price, delivery_date, pick_up, pick_up_date, user_id, order_id]
             );
             return updatedOrder
    } catch(err){
