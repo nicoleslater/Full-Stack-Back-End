@@ -10,9 +10,9 @@ const getAllOrders = async (user_id) => {
 }
 
 
-const getOneOrder = async (order_id) => {
+const getOneOrder = async (id) => {
     try{
-        const oneOrder = await db.one("SELECT * FROM orders WHERE order_id=$1", order_id);
+        const oneOrder = await db.one("SELECT * FROM orders WHERE id=$1", id);
         return oneOrder
     } catch(error){
         return error
@@ -22,7 +22,7 @@ const getOneOrder = async (order_id) => {
 const createOrder = async (user_id, order) => {
     try{
    const { name, order_date, total_price, delivery_date, pick_up, pick_up_date } = order;
-   const createdOrder = await db.one(`INSERT INTO orders (name, order_date, total_price, delivery_date, pick_up, pick_up_date, user_id)
+   const createdOrder = await db.one(`INSERT INTO orders (name, order_date, total_price, delivery_date, pick_up, user_id)
    VALUES
    ($1, $2, $3, $4, $5, $6, $7) RETURNING *`,
    [ name, order_date, total_price, delivery_date, pick_up, pick_up_date, user_id ]);
@@ -46,9 +46,9 @@ const deleteOrder = async (order_id) => {
 
 const updateOrder = async (order) => {
    try{
-        const { name, order_date, total_price, delivery_date, pick_up, pick_up_date, order_id, user_id } = order;
+        const { order_date, name, total_price, delivery_date, pick_up, id, user_id } = order;
         const updatedOrder = await db.one(
-            `UPDATE orders SET name=$1, order_date=$2, total_price=$3, delivery_date=$4, pick_up=$5, pick_up_date=$6, user_id=$7 WHERE order_id=$8 RETURNING *`,
+            `UPDATE orders SET order_date=$1, name=$2, total_price=$3, delivery_date=$4, pick_up=$5, user_id=$6 WHERE id=$8 RETURNING *`,
             [name, order_date, total_price, delivery_date, pick_up, pick_up_date, user_id, order_id]
             );
             return updatedOrder
