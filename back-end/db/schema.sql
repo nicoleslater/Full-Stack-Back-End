@@ -13,7 +13,7 @@ CREATE TABLE users (
 );
 
 CREATE TABLE products (
-    product_id SERIAL PRIMARY KEY, 
+    id SERIAL PRIMARY KEY, 
     name TEXT NOT NULL, 
     description TEXT, 
     price NUMERIC, 
@@ -24,7 +24,7 @@ CREATE TABLE products (
 );
 
 CREATE TABLE orders ( 
-    order_id SERIAL PRIMARY KEY,
+    id SERIAL PRIMARY KEY,
     order_date TEXT,
     name TEXT, 
     total_price NUMERIC,

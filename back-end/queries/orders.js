@@ -1,8 +1,8 @@
 const db = require("../db/dbConfig");
 
-const getAllOrders = async (id) => {
+const getAllOrders = async (user_id) => {
     try{
-        const allOrders = await db.any("SELECT * FROM orders WHERE id=$1", id ); 
+        const allOrders = await db.any("SELECT * FROM users WHERE user_id=$1", user_id ); 
         return allOrders
         } catch(err){
             return err
