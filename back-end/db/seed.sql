@@ -26,15 +26,15 @@ VALUES
 ('Cocoa Bliss Body Butter', 'Indulgent body butter with the goodness of cocoa', 19.99, true, 'Cocoa Butter, Vanilla Oil & Jojoba Oil', 20, 'Body Butter'),
 ('Citrus Burst Face Scrub', 'Energizing face scrub with citrus extracts', 16.99, true, 'Citrus Extracts, Sugar & Jojoba Beads', 15, 'Face Scrub');
 
-INSERT INTO orders (user_id, order_date, name, total_price, delivery_date, pick_up, pick_up_date)
+INSERT INTO orders (user_id, order_date, name, total_price, delivery_date, pick_up)
 VALUES 
-('01-05-2023', 'Shea Rose', 9.99, '01-08-2023', false, 'N/A'),
-('03-11-2023', 'Winter Rose', 9.99, '03-15-2023', false, 'N/A'),
-('11-10-2023', 'Rose Butter Kisses', 18.99, '11-18-2023', false, 'N/A'),
-('05-25-2023', 'Rose Mist', 11.99, '05-28-2023', false, 'N/A'),
-('02-14-2023', 'Rose Honey Soap',15.99, 'N/A', true, '02-17-2023'),
-('04-02-2023', 'Cocoa Bliss Body Butter', 19.99, '04-10-2023', false, 'N/A'),
-('06-15-2023', 'Green Tea Infusion Toner', 14.99, '06-20-2023', false, 'N/A'),
-('09-08-2023', 'Jasmine Dream Cream', 24.99, '09-15-2023', false, 'N/A'),
-('07-21-2023', 'Lavender Fields Soap', 12.99, '07-25-2023', false, 'N/A'),
-('12-03-2023', 'Citrus Burst Face Scrub', 16.99, '12-10-2023', false, 'N/A');
+('01-05-2023', 'Shea Rose', 9.99, '01-08-2023', false),
+('03-11-2023', 'Winter Rose', 9.99, '03-15-2023', false),
+('11-10-2023', 'Rose Butter Kisses', 18.99, '11-18-2023', false),
+('05-25-2023', 'Rose Mist', 11.99, '05-28-2023', false),
+('02-14-2023', 'Rose Honey Soap',15.99, 'N/A', true),
+('04-02-2023', 'Cocoa Bliss Body Butter', 19.99, '04-10-2023', false),
+('06-15-2023', 'Green Tea Infusion Toner', 14.99, '06-20-2023', false),
+('09-08-2023', 'Jasmine Dream Cream', 24.99, '09-15-2023', false),
+('07-21-2023', 'Lavender Fields Soap', 12.99, '07-25-2023', false),
+('12-03-2023', 'Citrus Burst Face Scrub', 16.99, '12-10-2023', false);
