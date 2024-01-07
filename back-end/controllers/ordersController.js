@@ -1,5 +1,9 @@
 const express = require("express");
 
+const orders = express.Router({ mergeParams: true });
+
+const { getOneUser } = require("../queries/users");
+
 const {
     getAllOrders, 
     getOneOrder, 
@@ -10,33 +14,40 @@ const {
 
 const { checkName, checkBoolean } = require("../validations/checkOrders");
 
-const orders = express.Router();
 
 // Users
 // Orders
 // Products
 
-// Index 
-orders.get("/:id", async (req, res) => {
-   const { id } = req.params;
-   const oneOrder = await getOneOrder(id)
-    if(oneOrder){
-    // const allOrders = await getAllOrders(user_id);
-    res.json(oneOrder)
-   } else{
-    res.status(404).json({ error: "Sorry That Order is not Available!"});
-   }
-});
+
 
 //  Show
 orders.get("/", async (req, res) => {
-    const allOrders = await getAllOrders();
-   if(allOrders[0]){
-    res.status(200).json({ success: true, data: { payload: allOrders } });
-} else{
-    res.status(404).json({ success: false, data: { error: "Error (Order Controller) with the Server, please try again!" } });
+    const { user_id } = req.params;
+    try {
+      const user = await getOneUser(user_id);
+      const allOrders = await getAllOrders(user_id);
+      res.json({ ...user, allOrders });
+    } catch (err) {
+      res.json(err);
+    }
+  });
+
+// Index 
+orders.get("/:order_id", async (req, res) => {
+   const { order_id, user_id } = req.params;
+try{
+    const order = await getOneOrder(order_id);
+    const user = await getOneUser(user_id);
+    if(order.id){
+        res.json({ ...user, order })
+    }
+} catch(err){
+    res.json(err);
 }
+  
 });
+
 
 // Post
 orders.post("/", checkName, checkBoolean,  async (req, res) => {
