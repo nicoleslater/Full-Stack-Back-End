@@ -1,5 +1,8 @@
 const express = require("express");
 const cors = require("cors");
+const morgan = require('morgan');
+app.use(morgan('dev'));
+
 
 const app = express();
 
@@ -23,6 +26,12 @@ app.get("/", (req, res) => {
 app.get("*", (req, res) => {
     res.status(404).json({success: false, data: {error: "Page is NOT found!"}})
 });
+
+app.use((err, req, res, next) => {
+    console.error(err.stack);
+    res.status(500).json({ success: false, data: { error: 'Internal Server Error' } });
+});
+
 
 module.exports = app; 
 
