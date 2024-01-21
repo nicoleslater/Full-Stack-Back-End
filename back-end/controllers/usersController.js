@@ -12,7 +12,7 @@ const ordersController = require("./ordersController");
 
 const { checkName, checkBoolean } = require("../validations/checkUsers");
 
-const users = express.Router();
+const users = express.Router({mergeParams: true});
 
 users.use("/:id/orders", ordersController);
 

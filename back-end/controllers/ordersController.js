@@ -13,7 +13,7 @@ const {
 
 const { checkName, checkBoolean } = require("../validations/checkOrders");
 
-// orders.use("/:id/orders", usersController);
+
 
 orders.get("/:id/orders", async (req, res) => {
     const { id } = req.params;
@@ -28,9 +28,9 @@ orders.get("/:id/orders", async (req, res) => {
 
 
 // Index 
-orders.get("/:order_id", async (req, res) => {
-   const { order_id } = req.params;
-    const oneOrder = await getOneOrder(order_id);
+orders.get("/:id", async (req, res) => {
+   const { id } = req.params;
+    const oneOrder = await getOneOrder(id);
 
     if(oneOrder){
         res.json(oneOrder)
