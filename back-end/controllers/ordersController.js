@@ -2,7 +2,7 @@ const express = require("express");
 
 const orders = express.Router({ mergeParams: true });
 
-const { getOneUser } = require("../queries/users");
+// const { getOneUser } = require("../queries/users");
 
 const {
     getAllOrders, 
@@ -19,54 +19,47 @@ const { checkName, checkBoolean } = require("../validations/checkOrders");
 // Orders
 // Products
 
-
-
-//  Show
 orders.get("/", async (req, res) => {
-    const { user_id } = req.params;
-    try {
-      const user = await getOneUser(user_id);
-      const allOrders = await getAllOrders(user_id);
-      res.json({ ...user, allOrders });
-    } catch (err) {
-      res.json(err);
+    const allOrders = await getAllOrders();
+
+    if(allOrders[0]){
+        res.status(200).json({ success: true, data: {payload: allOrders} });
+    } else{
+        res.status(404).json({ success: false, data: { error: "Error (Order Controller), please try again!"}});
     }
-  });
+});
+
 
 // Index 
-orders.get("/:order_id", async (req, res) => {
-   const { order_id, user_id } = req.params;
-try{
-    const order = await getOneOrder(order_id);
-    const user = await getOneUser(user_id);
-    if(order.id){
-        res.json({ ...user, order })
+orders.get("/:id", async (req, res) => {
+   const { id } = req.params;
+    const oneOrder = await getOneOrder(id);
+
+    if(oneOrder){
+        res.json(oneOrder)
+    } else{
+            res.status(404).json({ error: "Sorry that Order ID does not exist! "});
     }
-} catch(err){
-    res.json(err);
-}
-  
 });
 
 
 // Post
-orders.post("/", async (req, res) => {
+orders.post("/", checkName, checkBoolean, async (req, res) => {
     try{
-        const { user_id } = req.params;
-        const createdOrder = await createOrder(user_id, req.body)
+        const createdOrder = await createOrder(req.body);
         req.json(createdOrder);
     } catch(err){
-        res.status(400).json( { error: "NOOOOOOO! "});
+        res.status(404).json( { error: "NOOOOOOO!  Please go back to Order Controller!"});
     }
 });
 
 // Delete
-orders.delete("/:order_id", async (req, res) => {
+orders.delete("/:id", async (req, res) => {
     try{
-        const { order_id } = req.params;
-        const deletedOrder = await deleteOrder(order_id);
+        const { id } = req.params;
+        const deletedOrder = await deleteOrder(id);
         if(deletedOrder){
-            res.status(200).json({ success: true, payload: { data: deletedOrder }, });
+            res.status(200).json({ success: true, payload: { data: deletedOrder, } });
         } else {
             res.status(404).json("Sorry that ORDER is not found!");
         }
@@ -77,8 +70,8 @@ orders.delete("/:order_id", async (req, res) => {
 
 // Update
 orders.put("/:id", async (req, res) => {
-    const { id, user_id } = req.params;
-    const updatedOrder = await updateOrder({ order_id, id, ...req.body });
+    const { id } = req.params;
+    const updatedOrder = await updateOrder(id, req.body );
     if(updatedOrder.id){
         res.status(200).json(updatedOrder);
     } else{
