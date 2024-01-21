@@ -13,10 +13,11 @@ const {
 
 const { checkName, checkBoolean } = require("../validations/checkOrders");
 
+// orders.use("/:id/orders", usersController);
 
-orders.get("/:users/:user_id/orders", async (req, res) => {
-    const { user_id } = req.params;
-    const allOrders = await getAllOrders(user_id);
+orders.get("/:id/orders", async (req, res) => {
+    const { id } = req.params;
+    const allOrders = await getAllOrders(id);
 
     if(allOrders[0]){
         res.status(200).json({ success: true, data: {payload: allOrders} });
@@ -27,9 +28,9 @@ orders.get("/:users/:user_id/orders", async (req, res) => {
 
 
 // Index 
-orders.get("/:users/:user_id/orders/:order_id", async (req, res) => {
-   const { user_id, order_id } = req.params;
-    const oneOrder = await getOneOrder(user_id, order_id);
+orders.get("/:order_id", async (req, res) => {
+   const { order_id } = req.params;
+    const oneOrder = await getOneOrder(order_id);
 
     if(oneOrder){
         res.json(oneOrder)
@@ -40,44 +41,40 @@ orders.get("/:users/:user_id/orders/:order_id", async (req, res) => {
 
 
 // Post
-orders.post("/users/:user_id/orders", checkName, checkBoolean, async (req, res) => {
-    const { user_id } = req.params;
+orders.post("/", checkName, checkBoolean, async (req, res) => {
     try{
-        const createdOrder = await createOrder(user_id, req.body);
-        res.status(200).json({ success: true, data: { payload: createdOrder }});
-    } catch(err){
+        const createdOrder = await createOrder(req.body);
+        res.json(createdOrder);
+    } catch(error){
         res.status(404).json( { success: false, data: { error: "NOOOOOOO!  Please go back to Order Controller!"}});
     }
 });
 
 // Delete
-orders.delete("/users/:user_id/orders/:order_id", async (req, res) => {
-    const { user_id, order_id } = req.params;
+orders.delete("/:id", async (req, res) => {
+
     try {
-        const deletedOrder = await deleteOrder(user_id, order_id);
+        const { id } = req.params;
+        const deletedOrder = await deleteOrder(id);
         if (deletedOrder) {
             res.status(200).json({ success: true, data: { payload: deletedOrder } });
         } else {
             res.status(404).json({ success: false, data: { error: "Order not found" } });
         }
     } catch (err) {
-        res.status(500).json({ success: false, data: { error: "Internal Server Error" } });
+        res.send(err)
     }
 });
 
 // Update
-orders.put("/users/:user_id/orders/:order_id", async (req, res) => {
-    const { user_id, order_id } = req.params;
-    try{
-    const updatedOrder = await updateOrder(user_id, order_id, req.body );
-    if (updatedOrder) {
-        res.status(200).json({ success: true, data: { payload: updatedOrder } });
-    } else {
-        res.status(404).json({ success: false, data: { error: "Order not found" } });
+orders.put("/:id", async (req, res) => {
+    const { id } = req.params;
+    const updatedOrder = await updateOrder( {id, ...req.body} );
+    if(updatedOrder.id){
+        res.status(200).json(updatedOrder);
+    } else{
+        res.status(404).json("NO Order found with that ID");
     }
-} catch (err) {
-    res.status(500).json({ success: false, data: { error: "Internal Server Error" } });
-}
 });
 
 module.exports = orders;

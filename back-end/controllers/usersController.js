@@ -14,7 +14,7 @@ const { checkName, checkBoolean } = require("../validations/checkUsers");
 
 const users = express.Router();
 
-users.use("/:user_id/orders", ordersController);
+users.use("/:id/orders", ordersController);
 
 // Index
 users.get(":/id", async (req, res) => {
