@@ -1,8 +1,6 @@
 const express = require("express");
 const cors = require("cors");
 const morgan = require('morgan');
-app.use(morgan('dev'));
-
 
 const app = express();
 
@@ -10,6 +8,7 @@ const usersController = require("./controllers/usersController");
 const ordersController = require("./controllers/ordersController");
 const productsController = require("./controllers/productsController");
 
+app.use(morgan('dev'));
 app.use(cors());
 app.use(express.json());
 
