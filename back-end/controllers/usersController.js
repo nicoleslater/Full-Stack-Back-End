@@ -6,15 +6,11 @@ const {
     createUser, 
     deleteUser, 
     updateUser,
-} = require("../queries/users");
-
-// const ordersController = require("./ordersController");
+} = require("../queries/users.js");
 
 const { checkName, checkBoolean } = require("../validations/checkUsers");
 
 const users = express.Router();
-
-// users.use("/:id/orders", ordersController);
 
 // Index
 users.get(":/id", async (req, res) => {
@@ -53,7 +49,7 @@ users.delete("/:id", async (req, res) => {
         const { id } = req.params;
         const deletedUser = await deleteUser(id);
         if(deletedUser){
-            res.status(200).json({ success: true, payload: { data: deletedUser, }})
+            res.status(200).json({ success: true, payload: { data: deletedUser, }, })
         } else {
             res.status(404).json("Sorry that user is not found!");
         }
@@ -65,7 +61,7 @@ users.delete("/:id", async (req, res) => {
 // Update
 users.put("/:id", async (req, res) => {
     const { id } = req.params;
-    const updatedUser = await updateUser(id, req.body);
+    const updatedUser = await updateUser({id, ...req.body});
     if(updatedUser.id){
         res.status(200).json(updatedUser);
     } else{
