@@ -1,6 +1,6 @@
 const express = require("express");
 
-const orders = express.Router({ mergeParams: true });
+const orders = express.Router();
 
 
 const {
@@ -15,30 +15,29 @@ const { checkName, checkBoolean } = require("../validations/checkOrders");
 
 
 
-orders.get("/:id/orders", async (req, res) => {
-    const { id } = req.params;
-    const allOrders = await getAllOrders(id);
-
-    if(allOrders[0]){
-        res.status(200).json({ success: true, data: {payload: allOrders} });
-    } else{
-        res.status(404).json({ success: false, data: { error: "Error (Order Controller), please try again!"}});
-    }
-});
 
 
 // Index 
 orders.get("/:id", async (req, res) => {
-   const { id } = req.params;
-    const oneOrder = await getOneOrder(id);
-
+    const { id } = req.params;
+     const oneOrder = await getOneOrder(id);
     if(oneOrder){
-        res.json(oneOrder)
+         res.json(oneOrder)
+     } else{
+             res.status(404).json({ error: "Sorry that Order ID does not exist! "});
+     }
+ });
+// Show
+
+orders.get("/", async (req, res) => {
+    const allOrders = await getAllOrders();
+
+    if(allOrders[0]){
+        res.status(200).json({ success: true, data: { payload: allOrders } });
     } else{
-            res.status(404).json({ error: "Sorry that Order ID does not exist! "});
+        res.status(404).json({ success: false, data: { error: "Error (Order Controller), please try again!"}});
     }
 });
-
 
 // Post
 orders.post("/", checkName, checkBoolean, async (req, res) => {

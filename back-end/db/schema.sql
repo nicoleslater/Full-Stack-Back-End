@@ -30,6 +30,4 @@ CREATE TABLE orders (
     total_price NUMERIC,
     delivery_date TEXT, 
     pick_up BOOLEAN,
-    user_id INTEGER REFERENCES users (id)
-    ON DELETE CASCADE
 );

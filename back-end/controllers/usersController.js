@@ -8,13 +8,13 @@ const {
     updateUser,
 } = require("../queries/users");
 
-const ordersController = require("./ordersController");
+// const ordersController = require("./ordersController");
 
 const { checkName, checkBoolean } = require("../validations/checkUsers");
 
-const users = express.Router({mergeParams: true});
+const users = express.Router();
 
-users.use("/:id/orders", ordersController);
+// users.use("/:id/orders", ordersController);
 
 // Index
 users.get(":/id", async (req, res) => {
