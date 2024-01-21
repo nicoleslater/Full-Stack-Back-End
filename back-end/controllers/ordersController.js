@@ -1,8 +1,5 @@
 const express = require("express");
 
-const orders = express.Router();
-
-
 const {
     getAllOrders, 
     getOneOrder, 
@@ -14,7 +11,7 @@ const {
 const { checkName, checkBoolean } = require("../validations/checkOrders");
 
 
-
+const orders = express.Router();
 
 
 // Index 
@@ -31,7 +28,6 @@ orders.get("/:id", async (req, res) => {
 
 orders.get("/", async (req, res) => {
     const allOrders = await getAllOrders();
-
     if(allOrders[0]){
         res.status(200).json({ success: true, data: { payload: allOrders } });
     } else{
@@ -51,8 +47,7 @@ orders.post("/", checkName, checkBoolean, async (req, res) => {
 
 // Delete
 orders.delete("/:id", async (req, res) => {
-
-    try {
+try {
         const { id } = req.params;
         const deletedOrder = await deleteOrder(id);
         if (deletedOrder) {
