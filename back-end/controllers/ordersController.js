@@ -2,7 +2,6 @@ const express = require("express");
 
 const orders = express.Router({ mergeParams: true });
 
-// const { getOneUser } = require("../queries/users");
 
 const {
     getAllOrders, 
@@ -15,9 +14,7 @@ const {
 const { checkName, checkBoolean } = require("../validations/checkOrders");
 
 
-// Users
-// Orders
-// Products
+
 
 orders.get("/", async (req, res) => {
     const allOrders = await getAllOrders();
