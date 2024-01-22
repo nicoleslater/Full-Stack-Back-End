@@ -3,7 +3,7 @@ const checkName = (req, res, next) => {
         console.log("Name is OK")
         next()
     } else{
-        res.status(400).json({ error: "Name is required!"})
+        res.status(404).json({ error: "Name is required!"})
     }
     
 }
@@ -12,7 +12,7 @@ const checkBoolean = (req, res, next) => {
     if(req.body.delivery === true || req.body.delivery === false){
         next()
     } else{
-        res.status(400).json({ error: "delivery must be a boolean value"})
+        res.status(404).json({ error: "delivery must be a boolean value"})
     }
 }
 
