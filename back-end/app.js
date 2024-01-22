@@ -4,9 +4,9 @@ const morgan = require('morgan');
 
 const app = express();
 
-const usersController = require("./controllers/usersController");
-const ordersController = require("./controllers/ordersController");
-const productsController = require("./controllers/productsController");
+const usersController = require("./controllers/usersController.js");
+const ordersController = require("./controllers/ordersController.js");
+const productsController = require("./controllers/productsController.js");
 
 app.use(morgan('dev'));
 app.use(cors());
