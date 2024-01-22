@@ -15,7 +15,7 @@ const products = express.Router();
 // Index
 products.get("/:id", async (req, res) => {
     const { id } = req.params;
-    const oneProduct = await getOneProduct(id)
+    const oneProduct = await getOneProduct(id);
     if(oneProduct){
         res.json(oneProduct)
     } else{
@@ -49,7 +49,7 @@ products.delete("/:id", async (req, res) => {
         const { id } = req.params;
         const deletedProduct = await deleteProduct(id);
         if(deletedProduct){
-            res.status(200).json({ success: true, payload: { data: deletedProduct, }, });
+            res.status(200).json({ success: true, payload: { data: deletedProduct } });
         } else{
             res.status(404).json("Sorry product not found!")
         }
