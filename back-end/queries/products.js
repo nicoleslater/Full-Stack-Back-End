@@ -49,7 +49,7 @@ const updateProduct = async (id, product) => {
     try{
         const { name, description, price, stocked, ingredients, inventory, category } = product;
         const updatedProduct = await db.one(
-            "UPDATE products SET name=$1, description=$2, price=$3, stocked=$4, ingredients=$5, inventory_count=$6, category=$7 WHERE product_id=$8 RETURNING *",
+            "UPDATE products SET name=$1, description=$2, price=$3, stocked=$4, ingredients=$5, inventory_count=$6, category=$7 WHERE id=$8 RETURNING *",
             [name, description, price, stocked, ingredients, inventory, category, id]
         );
         return updatedProduct
