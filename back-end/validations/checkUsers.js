@@ -9,7 +9,7 @@ const checkName = (req, res, next) => {
 }
 
 const checkBoolean = (req, res, next) => {
-    if(req.body.delivered === true || req.body.delivered === false){
+    if(req.body.delivery === true || req.body.delivery === false){
         next()
     } else{
         res.status(400).json({ error: "delivery must be a boolean value"})
