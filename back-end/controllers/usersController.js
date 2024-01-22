@@ -15,7 +15,7 @@ const users = express.Router();
 // Index
 users.get(":/id", async (req, res) => {
     const { id } = req.params
-    const oneUser = await getOneUser(id)
+    const oneUser = await getOneUser(id);
     if (oneUser){
         res.json(oneUser)
     } else {
@@ -63,7 +63,7 @@ users.delete("/:id", async (req, res) => {
 // Update
 users.put("/:id", async (req, res) => {
     const { id } = req.params;
-    const updatedUser = await updateUser(id, req.body);
+    const updatedUser = await updateUser( {id, ...req.body} );
     if(updatedUser.id) {
         res.status(200).json(updatedUser);
     } else (
