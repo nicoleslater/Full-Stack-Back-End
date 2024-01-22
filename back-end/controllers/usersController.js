@@ -27,11 +27,9 @@ users.get(":/id", async (req, res) => {
 users.get("/", async (req, res) => {
     const allUsers = await getAllUsers();
     if (allUsers[0]) {
-        res.status(200)
-        .json({ success: true, data: { payload: allUsers } });
+        res.status(200).json({ success: true, data: { payload: allUsers } });
     } else {
-        res.status(500)
-        .json({ success: false, data: { error: "Server Error!" } });
+        res.status(404).json({ success: false, data: { error: "Server Error!" } });
     }
 });
 
