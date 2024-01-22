@@ -6,9 +6,9 @@ const {
     createOrder, 
     deleteOrder, 
     updateOrder,
-} = require("../queries/orders");
+} = require("../queries/orders.js");
 
-const { checkName, checkBoolean } = require("../validations/checkOrders");
+const { checkName, checkBoolean } = require("../validations/checkOrders.js");
 
 
 const orders = express.Router();

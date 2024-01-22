@@ -8,7 +8,7 @@ const {
     updateUser,
 } = require("../queries/users.js");
 
-const { checkName, checkBoolean } = require("../validations/checkUsers");
+const { checkName, checkBoolean } = require("../validations/checkUsers.js");
 
 const users = express.Router();
 
