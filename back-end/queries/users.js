@@ -1,18 +1,18 @@
 const db = require("../db/dbConfig");
 
 const getAllUsers = async () => {
-    try{
+   try{
         const allUsers = await db.any("SELECT * FROM users");
-            return allUsers
-        } catch(err){
-            return err
-        }
-    }
-
+        return allUsers
+     } catch(err){
+        return err
+     }
+};
 
 const getOneUser = async (id) => {
+    // try & catch db.one
     try{
-        const oneUser = await db.one("SELECT * FROM users WHERE id=$1", id);
+        const oneUser = await db.one("SELECT * FROM users WHERE id=$1", id)
         return oneUser
     } catch(error){
         return error
@@ -20,6 +20,7 @@ const getOneUser = async (id) => {
 };
 
 const createUser = async (user) => {
+    // try & catch db.one
     try{
         const createdUser = await db.one("INSERT INTO users (name, email, address, delivery) VALUES ($1, $2, $3, $4) RETURNING *", 
         [user.name, user.email, user.address, user.delivery])
@@ -30,9 +31,10 @@ const createUser = async (user) => {
 };
 
 const deleteUser = async (id) => {
+    // try & catch db.one
     try{
         const deletedUser = await db.one(
-            "DELETE from users WHERE id = $1 RETURNING *", 
+            "DELETE from users WHERE id = $1 RETURNING *",
             id
         );
         return deletedUser
@@ -42,22 +44,23 @@ const deleteUser = async (id) => {
 };
 
 const updateUser = async (id, user) => {
-   try{
+    // try & catch db.one
+    try{
         const { name, email, address, delivery } = user;
         const updatedUser = await db.one(
             "UPDATE users SET name=$1, email=$2, address=$3, delivery=$4 WHERE id=$5 RETURNING *",
             [name, email, address, delivery, id]
-            );
-            return updatedUser
-   } catch(err){
-    return err
-   }
+        );
+        return updatedUser
+    } catch(err){
+        return err
+    }
 };
 
 module.exports = {
     getAllUsers, 
     getOneUser, 
-    createUser, 
-    deleteUser, 
-    updateUser
+    createUser,
+    deleteUser,
+    updateUser,
 }
