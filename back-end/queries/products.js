@@ -32,7 +32,6 @@ const createProduct = async (product) => {
 
 const deleteProduct = async (id) => {
     // try & catch db.one
-    console.log(`<------ Deleting ${id}`)
     try{
         const deletedProduct = await db.one(
             "DELETE from products WHERE id = $1 RETURNING *",
