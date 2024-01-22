@@ -6,10 +6,10 @@ CREATE DATABASE lovelyskincare_dev;
 
 CREATE TABLE users (
     id SERIAL PRIMARY KEY, 
-    name TEXT,
+    name TEXT NOT NULL,
     email TEXT,
-    shipping_address TEXT,
-    preferred_delivery BOOLEAN 
+    address TEXT,
+    delivery BOOLEAN 
 );
 
 CREATE TABLE products (
@@ -25,9 +25,9 @@ CREATE TABLE products (
 
 CREATE TABLE orders ( 
     id SERIAL PRIMARY KEY,
-    order_date TEXT,
-    name TEXT, 
-    total_price NUMERIC,
-    delivery_date TEXT, 
-    pick_up BOOLEAN
+    orderDate TEXT,
+    name TEXT NOT NULL, 
+    price NUMERIC,
+    delivered BOOLEAN, 
+    pickUp BOOLEAN
 );

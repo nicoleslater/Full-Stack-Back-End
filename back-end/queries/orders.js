@@ -21,8 +21,8 @@ const getOneOrder = async (id) => {
 
 const createOrder = async (order) => {
     try{
-        const createdOrder = await db.one("INSERT INTO orders (order_date, name, total_price, delivery_date, pick_up) VALUES ($1, $2, $3, $4, $5) RETURNING *", 
-        [order.order_date, order.name, order.total_price, order.delivery_date, order.pick_up])
+        const createdOrder = await db.one("INSERT INTO orders (orderDate, name, price, delivered, pickUp) VALUES ($1, $2, $3, $4, $5) RETURNING *", 
+        [order.orderDate, order.name, order.price, order.delivered, order.pickUp])
         return createdOrder
     } catch(error){
         return error
@@ -43,10 +43,10 @@ const deleteOrder = async (id) => {
 
 const updateOrder = async (id, order) => {
    try{
-        const { order_date, name, total_price, delivery_date, pick_up} = order;
+        const { orderDate, name, price, delivered, pickUp} = order;
         const updatedOrder = await db.one(
-            `UPDATE orders SET order_date=$1, name=$2, total_price=$3, delivery_date=$4, pick_up=$5, WHERE id=$6 RETURNING *`,
-            [order_date, name, total_price, delivery_date, pick_up, id]
+            `UPDATE orders SET orderDate=$1, name=$2, price=$3, delivered=$4, pickUp=$5, WHERE id=$6 RETURNING *`,
+            [orderDate, name, price, delivered, pickUp, id]
             );
             return updatedOrder
    } catch(err){

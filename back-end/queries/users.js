@@ -21,8 +21,8 @@ const getOneUser = async (id) => {
 
 const createUser = async (user) => {
     try{
-        const createdUser = await db.one("INSERT INTO users (name, email, shipping_address, preferred_delivery) VALUES ($1, $2, $3, $4) RETURNING *", 
-        [user.name, user.email, user.shipping_address, user.preferred_delivery])
+        const createdUser = await db.one("INSERT INTO users (name, email, address, delivery) VALUES ($1, $2, $3, $4) RETURNING *", 
+        [user.name, user.email, user.address, user.delivery])
         return createdUser
     } catch(error){
         return error
@@ -43,10 +43,10 @@ const deleteUser = async (id) => {
 
 const updateUser = async (id, user) => {
    try{
-        const { name, email, shipping_address, preferred_delivery } = user;
+        const { name, email, address, delivery } = user;
         const updatedUser = await db.one(
-            "UPDATE users SET name=$1, email=$2, shipping_address=$3 preferred_delivery=$4 WHERE id=$5 RETURNING *",
-            [name, email, shipping_address, preferred_delivery, id]
+            "UPDATE users SET name=$1, email=$2, address=$3, delivery=$4 WHERE id=$5 RETURNING *",
+            [name, email, address, delivery, id]
             );
             return updatedUser
    } catch(err){

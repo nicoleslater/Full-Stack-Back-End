@@ -8,10 +8,10 @@ const checkName = (req, res, next) => {
 }
 
 const checkBoolean = (req, res, next) => {
-    if(req.body.pick_up === true || req.body.pick_up === false){
+    if(req.body.pickUp === true || req.body.pickUp === false){
         next()
     } else{
-        res.status(400).json({ error: "pick_up must be a boolean value" })
+        res.status(400).json({ error: "pickUp must be a boolean value" })
     }
 }
 

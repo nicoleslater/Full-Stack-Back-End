@@ -1,6 +1,6 @@
 \c lovelyskincare_dev;
 
-INSERT INTO users (name, email, shipping_address, preferred_delivery)
+INSERT INTO users (name, email, address, delivery)
 VALUES 
 ('Sharon Jones', 'sharon.jones@gmail.com', '789 Elm St, Smallburg, TX, 83201', true),
 ('Autumn Stevens', 'stevenssavvy@gmail.com', '456 Oak Rd, Suburbatoon, OR, 97123', true),
@@ -26,15 +26,15 @@ VALUES
 ('Cocoa Bliss Body Butter', 'Indulgent body butter with the goodness of cocoa', 19.99, true, 'Cocoa Butter, Vanilla Oil & Jojoba Oil', 20, 'Body Butter'),
 ('Citrus Burst Face Scrub', 'Energizing face scrub with citrus extracts', 16.99, true, 'Citrus Extracts, Sugar & Jojoba Beads', 15, 'Face Scrub');
 
-INSERT INTO orders (order_date, name, total_price, delivery_date, pick_up)
+INSERT INTO orders (orderDate, name, price, delivered, pickUp)
 VALUES 
-('01-05-2023', 'Shea Rose', 9.99, '01-08-2023', false),
-('03-11-2023', 'Winter Rose', 9.99, '03-15-2023', false),
-('11-10-2023', 'Rose Butter Kisses', 18.99, '11-18-2023', false),
-('05-25-2023', 'Rose Mist', 11.99, '05-28-2023', false),
-('02-14-2023', 'Rose Honey Soap',15.99, 'N/A', true),
-('04-02-2023', 'Cocoa Bliss Body Butter', 19.99, '04-10-2023', false),
-('06-15-2023', 'Green Tea Infusion Toner', 14.99, '06-20-2023', false),
-('09-08-2023', 'Jasmine Dream Cream', 24.99, '09-15-2023', false),
-('07-21-2023', 'Lavender Fields Soap', 12.99, '07-25-2023', false),
-('12-03-2023', 'Citrus Burst Face Scrub', 16.99, '12-10-2023', false);
+('01-05-2023', 'Shea Rose', 9.99, false, '01-08-2023'),
+('03-11-2023', 'Winter Rose', 9.99, false, '03-15-2023'),
+('11-10-2023', 'Rose Butter Kisses', 18.99, false, '11-18-2023'),
+('05-25-2023', 'Rose Mist', 11.99, false, '05-28-2023'),
+('02-14-2023', 'Rose Honey Soap',15.99, true, 'N/A'),
+('04-02-2023', 'Cocoa Bliss Body Butter', 19.99, false, '04-10-2023'),
+('06-15-2023', 'Green Tea Infusion Toner', 14.99, false, '06-20-2023'),
+('09-08-2023', 'Jasmine Dream Cream', 24.99, false, '09-15-2023'),
+('07-21-2023', 'Lavender Fields Soap', 12.99, false, '07-25-2023'),
+('12-03-2023', 'Citrus Burst Face Scrub', 16.99, false, '12-10-2023');

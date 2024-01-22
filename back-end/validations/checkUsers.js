@@ -9,7 +9,7 @@ const checkName = (req, res, next) => {
 }
 
 const checkBoolean = (req, res, next) => {
-    if(req.body.preferred_delivery === true || req.body.preferred_delivery === false){
+    if(req.body.delivery === true || req.body.delivery === false){
         next()
     } else{
         res.status(400).json({ error: "preferred_delivery must be a boolean value"})
