@@ -28,6 +28,7 @@ CREATE TABLE orders (
     orderDate TEXT,
     name TEXT NOT NULL, 
     price NUMERIC,
+    category TEXT,
     delivered BOOLEAN, 
     pickUp BOOLEAN
 );
