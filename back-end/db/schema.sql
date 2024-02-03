@@ -11,6 +11,10 @@ CREATE TABLE users (
     address TEXT,
     delivery BOOLEAN 
 );
+CREATE TABLE category(
+    id SERIAL PRIMARY KEY, 
+    name TEXT,
+);
 
 CREATE TABLE products (
     id SERIAL PRIMARY KEY, 
