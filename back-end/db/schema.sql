@@ -12,7 +12,7 @@ CREATE TABLE users (
     delivery BOOLEAN 
 );
 
-CREATE TABLE category(
+CREATE TABLE category (
     id SERIAL PRIMARY KEY, 
     name TEXT,
 );
