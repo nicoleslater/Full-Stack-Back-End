@@ -14,8 +14,8 @@ CREATE TABLE users (
 
 CREATE TABLE category (
     id SERIAL PRIMARY KEY, 
-    name TEXT,
-);
+    name TEXT
+    );
 
 CREATE TABLE products (
     id SERIAL PRIMARY KEY, 
