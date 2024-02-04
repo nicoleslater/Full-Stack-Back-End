@@ -13,6 +13,17 @@ VALUES
 ('Noah Hill', 'noah.hill@gmail.com', '876 Elm Blvd, Cityville, TX, 75001', true),
 ('Sophia Taylor', 's.taylor@aol.com', '2586 Robinson Junctions Suite 04, Lake Andrewburgh, MN 14567', true);
 
+INSERT INTO category (name) VALUES 
+    ('Cleanser'),
+    ('Moisturizer'),
+    ('Toner'),
+    ('Face Mist'),
+    ('Cream'),
+    ('Soap'),
+    ('Lotion'),
+    ('Sunscreen'),
+    ('Serum');
+
 INSERT INTO products (name, description, price, stocked, ingredients, inventory, category)
 VALUES 
 ('Rose Butter Kisses', 'Perfect lotion for Winter Season and leaves the skin moisturized', 18.99, true,'Rose Oil, Cocoa Butter & Jasmine Essential Oil', 25, 'Lotion'),
