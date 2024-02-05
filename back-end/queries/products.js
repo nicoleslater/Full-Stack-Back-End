@@ -19,17 +19,6 @@ const getOneProduct = async (id) => {
     }
 };
 
-const createProduct = async (product) => {
-    // try & catch db.one
-    try{
-        const createdProduct = await db.one("INSERT INTO products (name, description, price, stocked, ingredients, inventory, category) VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING *", 
-        [product.name, product.description, product.price, product.stocked, product.ingredients, product.inventory, product.category])
-        return createdProduct
-    } catch(error){
-        return error
-    }
-};
-
 const deleteProduct = async (id) => {
     // try & catch db.one
     try{
@@ -60,7 +49,6 @@ const updateProduct = async (id, product) => {
 module.exports = {
     getAllProducts, 
     getOneProduct, 
-    createProduct,
     deleteProduct,
-    updateProduct,
+    updateProduct
 }

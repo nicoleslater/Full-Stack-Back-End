@@ -1,24 +1,5 @@
 const db = require("../db/dbConfig");
 
-const getAllUsers = async () => {
-   try{
-        const allUsers = await db.any("SELECT * FROM users");
-        return allUsers
-     } catch(err){
-        return err
-     }
-};
-
-const getOneUser = async (id) => {
-    // try & catch db.one
-    try{
-        const oneUser = await db.one("SELECT * FROM users WHERE id=$1", id)
-        return oneUser
-    } catch(error){
-        return error
-    }
-};
-
 const createUser = async (user) => {
     // try & catch db.one
     try{
@@ -58,9 +39,7 @@ const updateUser = async (id, user) => {
 };
 
 module.exports = {
-    getAllUsers, 
-    getOneUser, 
-    createUser,
+   createUser,
     deleteUser,
-    updateUser,
+    updateUser
 }

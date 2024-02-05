@@ -1,15 +1,5 @@
 const db = require("../db/dbConfig");
 
-const getAllOrders = async () => {
-    try{
-        const allOrders = await db.any("SELECT * FROM orders"); 
-        return allOrders
-        } catch(err){
-            return err
-        }
-}
-
-
 const getOneOrder = async (id) => {
     try{
         const oneOrder = await db.one("SELECT * FROM orders WHERE id=$1", id);
@@ -55,7 +45,6 @@ const updateOrder = async (id, order) => {
 };
 
 module.exports = {
-    getAllOrders, 
     getOneOrder, 
     createOrder, 
     deleteOrder, 
