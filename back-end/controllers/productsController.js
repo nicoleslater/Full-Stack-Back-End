@@ -2,8 +2,7 @@ const express = require("express");
 
 const {
     getAllProducts, 
-    getOneProduct, 
-    createProduct, 
+    getOneProduct,  
     deleteProduct, 
     updateProduct,
 } = require("../queries/products.js");
