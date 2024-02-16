@@ -4,4 +4,7 @@ const {
     getAllCategories,
     getOneCategory
     
-} = require("../queries/")
+} = require("../queries/categories");
+
+const category = express.Router();
+const { checkName, checkBoolean } = require("../validations/")
