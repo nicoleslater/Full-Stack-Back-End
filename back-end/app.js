@@ -15,6 +15,7 @@ app.use(express.json());
 
 app.use("/orders", ordersController);
 app.use("/products", productsController);
+app.use("/products/category", categoryController);
 
 
 app.get("/", (req, res) => {
