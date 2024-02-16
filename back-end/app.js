@@ -4,7 +4,6 @@ const morgan = require('morgan');
 
 const app = express();
 
-// const usersController = require("./controllers/usersController.js");
 const ordersController = require("./controllers/ordersController.js");
 const productsController = require("./controllers/productsController.js");
 
@@ -13,7 +12,7 @@ app.use(cors());
 app.use(express.json());
 
 
-// app.use("/users", usersController);
+
 app.use("/orders", ordersController);
 app.use("/products", productsController);
 
